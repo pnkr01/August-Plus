@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:august_plus/src/screen/home/home.dart';
-import 'package:august_plus/src/screen/login/login.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/src/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
+import '../service/auth/components/signin.dart';
 import 'constant/global.dart';
 import 'screen/splash/components/splash_body.dart';
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const Home(),
         '/splash': (context) => const SplashBody(),
-        '/login': (context) => const LogInCumSignUpScreen(),
+        '/login': (context) => const SignInCumLogInScreen(),
       },
     );
   }

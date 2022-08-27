@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "787739285670",
+    "project_id": "doctorplus-c3121",
+    "storage_bucket": "doctorplus-c3121.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787739285670:android:4dc80417c39fe67638bc67",
+        "android_client_info": {
+          "package_name": "com.pawan.augustPlus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "787739285670-95regbgq3it1o7o5uem47oq74o93ed1n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pawan.augustPlus",
+            "certificate_hash": "85835c264e01aab709857b9e3e91be48b0ea55fb"
+          }
+        },
+        {
+          "client_id": "787739285670-pho8m5fg3n8hesjc7nbh9n0bb8r8dab0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_iqtOliQcxbtA7lDG8AIIdal2AqjDL8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "787739285670-pho8m5fg3n8hesjc7nbh9n0bb8r8dab0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
