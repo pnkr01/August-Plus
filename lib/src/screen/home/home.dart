@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
 
 import '../../size_configuration.dart';
 import '../pages/ambulance/ambulance_nav.dart';
@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GNav(
-              rippleColor: Colors.blue[300]!,
+              rippleColor: Colors.grey[300]!,
               hoverColor: Colors.grey[100]!,
               gap: 8,
               activeColor: Colors.black,
@@ -56,24 +56,24 @@ class _HomeState extends State<Home> {
               color: Colors.black,
               tabs: const [
                 GButton(
-                  icon: LineIcons.home,
-                  text: 'Home',
+                  icon: FontAwesomeIcons.house,
+                  // text: 'Home',
                 ),
                 GButton(
-                  icon: LineIcons.facebookMessenger,
-                  text: 'Messages',
+                  icon: FontAwesomeIcons.message,
+                  //text: 'Messages',
                 ),
                 GButton(
-                  icon: LineIcons.ambulance,
-                  text: 'Ambulance',
+                  icon: FontAwesomeIcons.truckMedical,
+                  // text: 'Ambulance',
                 ),
                 GButton(
-                  icon: LineIcons.calendar,
-                  text: 'Appointement',
+                  icon: FontAwesomeIcons.calendar,
+                  //text: 'Appointement',
                 ),
                 GButton(
-                  icon: LineIcons.peopleCarry,
-                  text: 'Profile',
+                  icon: FontAwesomeIcons.person,
+                  // text: 'Profile',
                 ),
               ],
               selectedIndex: _selectedIndex,
