@@ -210,7 +210,7 @@ class _OldUserScreenOtpState extends State<OldUserScreenOtp> {
                   ),
                   Center(
                     child: Text(
-                      "******" + widget.phone.substring(6).toString(),
+                      "******${widget.phone.substring(6)}",
                       style: const TextStyle(fontSize: 12.0),
                     ),
                   ),
@@ -226,7 +226,7 @@ class _OldUserScreenOtpState extends State<OldUserScreenOtp> {
                     fieldStyle: FieldStyle.underline,
                     onCompleted: (pin) {
                       if (kDebugMode) {
-                        print("Completed Pin" + pin);
+                        print("Completed Pin$pin");
                       }
                       setState(() {
                         smsCode = pin;
