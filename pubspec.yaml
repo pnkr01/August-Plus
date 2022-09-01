@@ -42,6 +42,13 @@ dependencies:
   cloud_firestore: ^3.4.6
   otp_text_field: ^1.1.3
   font_awesome_flutter: ^10.1.0
+  http: ^0.13.5
+  geolocator: ^9.0.1
+  permission_handler: ^10.0.0
+  weather: ^2.0.1
+  sqflite: ^2.0.3+1
+  flutter_weather_icons: ^1.0.2
+  simple_animations: ^5.0.0+2
 
 dev_dependencies:
   flutter_test:

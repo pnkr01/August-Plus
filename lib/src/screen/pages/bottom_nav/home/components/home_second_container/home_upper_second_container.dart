@@ -1,3 +1,4 @@
+import 'package:august_plus/src/size_configuration.dart';
 import 'package:flutter/material.dart';
 import 'components/doctor_card.dart';
 
@@ -16,45 +17,45 @@ class HomeUpperSecondContainer extends StatelessWidget {
       'assets/doctors/eight.jpg',
       'assets/doctors/nine.jpg',
     ];
-    return Padding(
-      padding: const EdgeInsets.all(14.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Doctor of the week',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: getProportionateScreenHeight(10),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              '  Doctor of the week',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
               ),
-              TextButton(
-                onPressed: () {},
-                child: const Text('See More'),
-              )
+            ),
+            TextButton(
+              onPressed: () {},
+              child: const Text('See More'),
+            )
+          ],
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              ...List.generate(
+                doctorsImage.length,
+                (index) {
+                  return DoctorCard(
+                    doctImage: doctorsImage[index],
+                    width: 200,
+                  );
+                },
+              ),
             ],
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                ...List.generate(
-                  doctorsImage.length,
-                  (index) {
-                    return DoctorCard(
-                      doctImage: doctorsImage[index],
-                      width: 200,
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
