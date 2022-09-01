@@ -48,16 +48,17 @@ class CreateContainerWithIcon extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: getProportionateScreenWidth(70),
+          height: getProportionateScreenWidth(60),
           width: getProportionateScreenWidth(70),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(
-              Radius.circular(getProportionateScreenWidth(10)),
+              Radius.circular(getProportionateScreenWidth(14)),
             ),
             color: const Color(0xFF8E8BE1),
           ),
           child: Icon(
             iconData,
+            size: 24,
             color: Colors.white,
           ),
         ),

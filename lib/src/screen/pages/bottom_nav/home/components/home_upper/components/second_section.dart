@@ -8,7 +8,7 @@ class SecondSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        left: 20,
+        left: 15,
         right: 20,
       ),
       child: TextFormField(
