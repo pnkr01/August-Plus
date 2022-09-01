@@ -1,4 +1,3 @@
-import 'package:august_plus/src/size_configuration.dart';
 import 'package:flutter/material.dart';
 import 'components/doctor_card.dart';
 
@@ -47,7 +46,7 @@ class HomeUpperSecondContainer extends StatelessWidget {
                   (index) {
                     return DoctorCard(
                       doctImage: doctorsImage[index],
-                      width: getProportionateScreenHeight(100),
+                      width: 200,
                     );
                   },
                 ),

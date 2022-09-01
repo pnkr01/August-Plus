@@ -35,8 +35,8 @@ class FirstSection extends StatelessWidget {
             ],
           ),
           Container(
-            height: getProportionateScreenHeight(55),
-            width: getProportionateScreenHeight(60),
+            height: getProportionateScreenHeight(70),
+            width: getProportionateScreenHeight(70),
             decoration: const BoxDecoration(
               color: Color(0xFF8E8BE1),
               borderRadius: BorderRadius.all(
@@ -48,7 +48,7 @@ class FirstSection extends StatelessWidget {
               icon: Icon(
                 FontAwesomeIcons.solidBell,
                 color: Colors.white,
-                size: getProportionateScreenHeight(25),
+                size: getProportionateScreenHeight(30),
               ),
             ),
           ),

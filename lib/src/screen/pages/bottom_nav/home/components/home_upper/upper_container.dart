@@ -22,11 +22,11 @@ class HomeUpperContainer extends StatelessWidget {
         children: [
           const FirstSection(),
           SizedBox(
-            height: getProportionateScreenHeight(35),
+            height: getProportionateScreenHeight(25),
           ),
           const SecondSection(),
           SizedBox(
-            height: getProportionateScreenHeight(40),
+            height: getProportionateScreenHeight(25),
           ),
           const ThirdSection(),
         ],

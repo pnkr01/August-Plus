@@ -36,8 +36,8 @@ class DoctorCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: getProportionateScreenHeight(140),
-                  width: getProportionateScreenHeight(180),
+                  height: 140,
+                  width: 180,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(18.0),
                     child: Image.asset(
@@ -47,12 +47,15 @@ class DoctorCard extends StatelessWidget {
                   ),
                 ),
                 const Text('Dr D.K Singhai'),
-                 SizedBox(
-                  height: getProportionateScreenHeight(8),
+                const SizedBox(
+                  height: 8,
                 ),
                 const Text('Phscitraist'),
-                 SizedBox(
-                  height: getProportionateScreenHeight(18),
+                const SizedBox(
+                  height: 10,
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 const BuildBottonWithContainer(
                   colorText: Color(0xFF7096E0),
