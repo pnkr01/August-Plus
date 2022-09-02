@@ -35,8 +35,8 @@ class FirstSection extends StatelessWidget {
             ],
           ),
           Container(
-            height: getProportionateScreenHeight(70),
-            width: getProportionateScreenHeight(70),
+            height: getProportionateScreenHeight(65),
+            width: getProportionateScreenHeight(65),
             decoration: const BoxDecoration(
               color: Color(0xFF8E8BE1),
               borderRadius: BorderRadius.all(

@@ -1,3 +1,4 @@
+import 'package:august_plus/src/screen/pages/bottom_nav/home/components/home_four/home_four_container.dart';
 import 'package:august_plus/src/screen/pages/bottom_nav/home/components/home_second_container/home_upper_second_container.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -29,23 +30,7 @@ class _HomeNavState extends State<HomeNav> {
   }
 
   checkWeather() async {
-    if (sharedPreferences.getBool('setData') == null) {
-      await takeWeather();
-    } else {
-      if (kDebugMode) {
-        print("inside else of weather");
-      }
-      w = await wf
-          .currentWeatherByLocation(
-        sharedPreferences.getDouble('lat') ?? 0.0,
-        sharedPreferences.getDouble('long') ?? 0.0,
-      )
-          .whenComplete(() {
-        setState(() {
-          isLoading = !isLoading;
-        });
-      });
-    }
+    await takeWeather();
   }
 
   Future<Weather> takeWeather() async {
@@ -90,6 +75,7 @@ class _HomeNavState extends State<HomeNav> {
                       const HomeUpperContainer(),
                       const HomeUpperSecondContainer(),
                       HomeUpperThirdContainer(wdata: w),
+                      const HomeFourContainer(),
                     ],
                   ),
                 ),

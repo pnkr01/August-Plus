@@ -9,16 +9,16 @@ class ThirdSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List iconData = [
-      FontAwesomeIcons.heartPulse,
+      FontAwesomeIcons.appStoreIos,
       FontAwesomeIcons.solidHospital,
-      FontAwesomeIcons.solidCalendarPlus,
-      FontAwesomeIcons.kitMedical,
+      FontAwesomeIcons.clockRotateLeft,
+      FontAwesomeIcons.fileMedical
     ];
     List iconText = [
-      'Consultation',
-      'Hospital',
       'Appointment',
-      'Reciepe',
+      '   Hospital',
+      '   History',
+      '   Reports',
     ];
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -48,11 +48,11 @@ class CreateContainerWithIcon extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: getProportionateScreenWidth(70),
-          width: getProportionateScreenWidth(70),
+          height: getProportionateScreenWidth(65),
+          width: getProportionateScreenWidth(65),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(
-              Radius.circular(getProportionateScreenWidth(10)),
+              Radius.circular(getProportionateScreenWidth(8)),
             ),
             color: const Color(0xFF8E8BE1),
           ),

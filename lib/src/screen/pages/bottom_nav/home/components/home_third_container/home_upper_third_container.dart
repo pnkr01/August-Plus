@@ -16,10 +16,6 @@ class HomeUpperThirdContainer extends StatefulWidget {
 }
 
 class _HomeUpperThirdContainerState extends State<HomeUpperThirdContainer> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +38,7 @@ class _HomeUpperThirdContainerState extends State<HomeUpperThirdContainer> {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: DesignWeather(wData: widget.wdata),
-        )
+        ),
       ],
     );
   }
