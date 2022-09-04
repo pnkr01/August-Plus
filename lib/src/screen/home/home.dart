@@ -21,8 +21,8 @@ class _HomeState extends State<Home> {
   final screen = [
     const HomeNav(),
     const MessageNav(),
-    const AmbulanceNav(),
     const ApoointementNav(),
+    const AmbulanceNav(),
     const ProfileNav(),
   ];
 
@@ -52,7 +52,8 @@ class _HomeState extends State<Home> {
                 gap: 8,
                 activeColor: const Color(0xFF5E63E0),
                 iconSize: 24,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 duration: const Duration(milliseconds: 400),
                 tabBackgroundColor: Colors.grey[100]!,
                 color: const Color(0xFFC9C9C9),
@@ -66,12 +67,12 @@ class _HomeState extends State<Home> {
                     text: 'Message',
                   ),
                   GButton(
-                    icon: FontAwesomeIcons.truckMedical,
-                    text: 'Ambulance',
-                  ),
-                  GButton(
                     icon: FontAwesomeIcons.bolt,
                     text: 'AI BOT',
+                  ),
+                  GButton(
+                    icon: FontAwesomeIcons.truckMedical,
+                    text: 'Ambulance',
                   ),
                   GButton(
                     icon: FontAwesomeIcons.person,

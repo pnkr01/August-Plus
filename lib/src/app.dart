@@ -52,41 +52,20 @@ class _HandleOnboardingState extends State<HandleOnboarding> {
     );
   }
 
-  // takeWeather() async {
-  //   await wf
-  //       .currentWeatherByLocation(
-  //     sharedPreferences.getDouble('lat') ?? 0.0,
-  //     sharedPreferences.getDouble('long') ?? 0.0,
-  //   )
-  //       .then((w) {
-  //     sharedPreferences.setString('place', w.areaName ?? 'area not found');
-  //     sharedPreferences.setString(
-  //         'weather', w.weatherDescription ?? 'weather not found');
-  //     sharedPreferences.setDouble('humidity', w.humidity ?? 20.0);
-  //     sharedPreferences.setDouble('windSpeed', w.windSpeed ?? 30.0);
-  //     sharedPreferences.setDouble(
-  //         'tempFeelsLike', w.tempFeelsLike!.celsius ?? 30.0);
-  //     sharedPreferences.setDouble('pressure', w.pressure ?? 30.0);
-  //     sharedPreferences.setString('icon', w.weatherIcon ?? 'null');
-  //     return w;
-  //   });
-  // }
-
   var currentLocation;
 
   requestPermission() async {
     // ignore: avoid_print
     print("Asking Permission");
     await Permission.location.request();
-    await chekForPermission();
-    //await takeWeather();
+    await setPermission();
   }
 
-  chekForPermission() async {
+  setPermission() async {
     var status = await Permission.location.status;
     if (status.isGranted) {
       // ignore: avoid_print
-      print("Got Permission from User");
+      print("Got Permission Request from User");
       if (sharedPreferences.getDouble("lat") == null &&
           sharedPreferences.getDouble("long") == null) {
         getLocation();
@@ -109,8 +88,6 @@ class _HandleOnboardingState extends State<HandleOnboarding> {
       print("Got the location");
       await sharedPreferences.setDouble("lat", currentLocation.latitude);
       await sharedPreferences.setDouble("long", currentLocation.longitude);
-      print(sharedPreferences.getDouble('lat'));
-      print(sharedPreferences.getDouble('long'));
     });
   }
 

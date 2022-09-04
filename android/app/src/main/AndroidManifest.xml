@@ -8,6 +8,8 @@
         android:label="august_plus"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAFSE5_hBln5LMSt8fGR3e-1kPlS_MMGWg"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
