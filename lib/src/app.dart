@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:august_plus/src/screen/home/home.dart';
+import 'package:august_plus/src/screen/pages/bottom_nav/ambulance/components/booked_ambulance.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/src/theme/app_theme.dart';
 import 'package:august_plus/utils/errordialog.dart';
@@ -10,6 +11,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:weather/weather.dart';
 import '../service/auth/components/signin.dart';
 import '../utils/global.dart';
+import 'constant/map_api_key.dart';
 import 'screen/splash/components/splash_body.dart';
 
 class MyApp extends StatelessWidget {
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: theme(),
       title: 'Doctor Plus',
-      home: const HandleOnboarding(),
+      home: const BookedAmbulancePage(),
       routes: {
         '/home': (context) => const Home(),
         '/splash': (context) => const SplashBody(),
@@ -50,6 +52,11 @@ class _HandleOnboardingState extends State<HandleOnboarding> {
       "752c76ba36af06e471e0cb73908fa033",
       language: Language.ENGLISH,
     );
+    getKey();
+  }
+
+  getKey() {
+    MapKey.readyApiKey();
   }
 
   var currentLocation;
