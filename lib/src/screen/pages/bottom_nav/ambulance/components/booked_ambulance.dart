@@ -3,6 +3,8 @@ import 'package:august_plus/utils/global.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../constant/shimmer.dart';
+
 class BookedAmbulancePage extends StatelessWidget {
   const BookedAmbulancePage({Key? key}) : super(key: key);
 
@@ -34,7 +36,7 @@ class BookedAmbulancePage extends StatelessWidget {
         stream: stream,
         builder: ((context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
-            return const CircularProgressIndicator();
+            return const NewsCardSkelton();
           } else {
             return ListView.builder(
               itemCount: snapshot.data.docs.length,

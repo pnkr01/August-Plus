@@ -144,7 +144,7 @@ class _NewUserScreenOtpState extends State<NewUserScreenOtp> {
             child: Container(
               color: const Color(0xFFFF9900),
               child: Text(
-                '            Sign Up',
+                '           Sign Up',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,

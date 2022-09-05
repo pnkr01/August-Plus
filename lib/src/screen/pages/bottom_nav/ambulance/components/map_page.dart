@@ -488,7 +488,7 @@ bookAmbulance(
       .then((value) => Navigator.pop(context))
       .then((value) => showSnackBar(context, 'Booked Sucessfully'))
       .then((value) => showModalBottomSheet(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.green,
           enableDrag: true,
           isDismissible: true,
           shape: const RoundedRectangleBorder(
@@ -527,7 +527,7 @@ bookAmbulance(
                           ),
                         );
                       },
-                      child: const Text('Check Booked Ambulance'),
+                      child: const Text('Booked Sucessfully'),
                     )
                   ],
                 ),

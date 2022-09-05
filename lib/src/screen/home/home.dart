@@ -1,3 +1,4 @@
+import 'package:august_plus/src/screen/pages/bottom_nav/profile/profile_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -7,7 +8,6 @@ import '../pages/bottom_nav/ambulance/ambulance_nav.dart';
 import '../pages/bottom_nav/appointement/appointement_nav.dart';
 import '../pages/bottom_nav/home/home_nav.dart';
 import '../pages/bottom_nav/message/message_nav.dart';
-import '../pages/bottom_nav/profile/profile_nav.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
     const MessageNav(),
     const ApoointementNav(),
     const AmbulanceNav(),
-    const ProfileNav(),
+    const Profile1(),
   ];
 
   @override

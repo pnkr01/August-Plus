@@ -26,11 +26,49 @@ class DesignAmbulanceCard extends StatelessWidget {
             height: 200,
             width: double.infinity,
             decoration: const BoxDecoration(
-                color: Color(0xFF6C6FDB),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(28.0),
-                )),
-                // child: ,
+              color: Color(0xFF6C6FDB),
+              borderRadius: BorderRadius.all(
+                Radius.circular(28.0),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Name : $name',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Left Time : $distance min',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Address : $address',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
           const SizedBox(
             height: 28,

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:august_plus/src/screen/home/home.dart';
-import 'package:august_plus/src/screen/pages/bottom_nav/ambulance/components/booked_ambulance.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/src/theme/app_theme.dart';
 import 'package:august_plus/utils/errordialog.dart';
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: theme(),
       title: 'Doctor Plus',
-      home: const BookedAmbulancePage(),
+      home: const HandleOnboarding(),
       routes: {
         '/home': (context) => const Home(),
         '/splash': (context) => const SplashBody(),
@@ -59,6 +58,7 @@ class _HandleOnboardingState extends State<HandleOnboarding> {
     MapKey.readyApiKey();
   }
 
+  // ignore: prefer_typing_uninitialized_variables
   var currentLocation;
 
   requestPermission() async {
