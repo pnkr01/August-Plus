@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:august_plus/src/screen/details/doctors_details_screen.dart';
 import 'package:august_plus/src/screen/home/home.dart';
 import 'package:august_plus/src/screen/pages/Doctor/doctor_home.dart';
 import 'package:august_plus/src/size_configuration.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: theme(),
       title: 'Doctor Plus',
-      home: const HandleOnboarding(),
+      home: const DoctorDetailScreen(),
       routes: {
         '/home': (context) => const Home(),
         '/splash': (context) => const SplashBody(),

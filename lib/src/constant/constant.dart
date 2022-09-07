@@ -18,3 +18,28 @@ TextStyle textStyle() {
     fontSize: getProportionateScreenHeight(20),
   );
 }
+
+BoxDecoration decoration() {
+  return const BoxDecoration(
+    borderRadius: BorderRadius.all(Radius.circular(24.0)),
+    color: Color(0xFFFFFDFF),
+    boxShadow: [
+      BoxShadow(
+        color: Color.fromARGB(255, 234, 230, 230),
+        offset: Offset(0, 2),
+      ),
+      BoxShadow(
+        color: Color.fromARGB(255, 234, 230, 230),
+        offset: Offset(0, -2),
+      ),
+      BoxShadow(
+        color: Color.fromARGB(255, 234, 230, 230),
+        offset: Offset(1, 0),
+      ),
+      BoxShadow(
+        color: Color.fromARGB(255, 234, 230, 230),
+        offset: Offset(-1, 0),
+      ),
+    ],
+  );
+}
