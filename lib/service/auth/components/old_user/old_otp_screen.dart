@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
+import '../../../../src/screen/pages/Doctor/doctor_home.dart';
 import '../../../../src/size_configuration.dart';
 import '../../../../utils/global.dart';
 import '../../../../utils/loading_dialog.dart';
@@ -38,13 +39,17 @@ class _OldUserScreenOtpState extends State<OldUserScreenOtp> {
     // ignore: unused_local_variable
     Timer timer = Timer.periodic(onsec, (timer) {
       if (start == 0) {
-        setState(() {
-          timer.cancel();
-          issend = true;
-        });
+        timer.cancel();
+        if (mounted) {
+          setState(() {
+            issend = !issend;
+          });
+        }
       } else {
         setState(() {
-          start--;
+          if (mounted) {
+            start--;
+          }
         });
       }
     });
@@ -56,7 +61,7 @@ class _OldUserScreenOtpState extends State<OldUserScreenOtp> {
           context: context,
           builder: (context) {
             return const LoadingDialog(
-              message: "",
+              message: "Please Wait",
             );
           });
       await authenticate1();
@@ -85,29 +90,57 @@ class _OldUserScreenOtpState extends State<OldUserScreenOtp> {
   }
 
   Future<void> getDataAndSaveLocally() async {
-    await FirebaseFirestore.instance
-        .collection("phone")
-        .doc(widget.phone)
-        .get()
-        .then((snap) async {
-      // await  sharedPreferences!.setString("uid", currentUser.uid);
-      await sharedPreferences.setString("name", snap.data()!["name"]);
-      await sharedPreferences.setString("phone", snap.data()!["phone"]);
-      await sharedPreferences.setString("email", snap.data()!["email"]);
-      await sharedPreferences.setString("address", snap.data()!["address"]);
+    if (sharedPreferences.getString('role') == 'Patient') {
+      await FirebaseFirestore.instance
+          .collection("phone")
+          .doc(widget.phone)
+          .get()
+          .then((snap) async {
+        // await  sharedPreferences!.setString("uid", currentUser.uid);
+        await sharedPreferences.setString("name", snap.data()!["name"]);
+        await sharedPreferences.setString("phone", snap.data()!["phone"]);
+        await sharedPreferences.setString("role", snap.data()!["role"]);
+        await sharedPreferences.setString("email", snap.data()!["email"]);
+        await sharedPreferences.setString("address", snap.data()!["address"]);
 
-      await sharedPreferences.setInt("age", snap.data()!["age"]);
-      await sharedPreferences.setString("gender", snap.data()!["gender"]);
-    }).then((value) {
-      Navigator.pop(context);
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const Home(),
-        ),
-      );
-      showSnackBar(context, "LoggedIn Sucessfully");
-    });
+        await sharedPreferences.setInt("age", snap.data()!["age"]);
+        await sharedPreferences.setString("gender", snap.data()!["gender"]);
+      }).then((value) {
+        Navigator.pop(context);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Home(),
+          ),
+        );
+        showSnackBar(context, "LoggedIn Sucessfully");
+      });
+    } else {
+      await FirebaseFirestore.instance
+          .collection("doctors")
+          .doc(widget.phone)
+          .get()
+          .then((snap) async {
+        // await  sharedPreferences!.setString("uid", currentUser.uid);
+        await sharedPreferences.setString("name", snap.data()!["name"]);
+        await sharedPreferences.setString("phone", snap.data()!["phone"]);
+        await sharedPreferences.setString("email", snap.data()!["email"]);
+        await sharedPreferences.setString("address", snap.data()!["address"]);
+      }).then((value) {
+        Navigator.pop(context);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const DoctorHomePage(),
+          ),
+        );
+        showSnackBar(context, "LoggedIn Sucessfully");
+      }).then((value) {
+        setState(() {
+          start = 0;
+        });
+      });
+    }
   }
 
   @override

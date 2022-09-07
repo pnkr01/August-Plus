@@ -1,4 +1,6 @@
+import 'package:august_plus/src/constant/shimmer.dart';
 import 'package:august_plus/src/size_configuration.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'components/doctor_card.dart';
 
@@ -7,16 +9,7 @@ class HomeUpperSecondContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List doctorsImage = [
-      'assets/doctors/one.webp',
-      'assets/doctors/two.jpg',
-      'assets/doctors/three.webp',
-      'assets/doctors/four.jpg',
-      'assets/doctors/six.jpg',
-      'assets/doctors/seven.jpg',
-      'assets/doctors/eight.jpg',
-      'assets/doctors/nine.jpg',
-    ];
+    Stream stream = FirebaseFirestore.instance.collection('doctor').snapshots();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -39,21 +32,36 @@ class HomeUpperSecondContainer extends StatelessWidget {
             )
           ],
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              ...List.generate(
-                doctorsImage.length,
-                (index) {
-                  return DoctorCard(
-                    doctImage: doctorsImage[index],
-                    width: 200,
-                  );
-                },
-              ),
-            ],
-          ),
+        StreamBuilder(
+          stream: stream,
+          builder: (context, AsyncSnapshot snapshot) {
+            if (!snapshot.hasData) {
+              return const NewsCardSkelton();
+            } else {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    ...List.generate(
+                      snapshot.data.docs.length,
+                      (index) {
+                        return DoctorCard(
+                          doctImage: snapshot.data.docs[index]['img'],
+                          width: 200,
+                          name: snapshot.data.docs[index]['name'],
+                          address: snapshot.data.docs[index]['add'],
+                          experience: snapshot.data.docs[index]['exp'],
+                          expertise: snapshot.data.docs[index]['et'],
+                          hp: snapshot.data.docs[index]['hp'],
+                          rating: snapshot.data.docs[index]['ra'],
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              );
+            }
+          },
         ),
       ],
     );

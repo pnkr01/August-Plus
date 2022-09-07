@@ -2,8 +2,8 @@ import 'package:august_plus/src/size_configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const kPrimaryColor = Color(0xFFFF9900);
-const kSecondaryColor = Color(0xFF979797);
+const kPrimaryColor = Color.fromARGB(255, 74, 78, 194);
+const kSecondaryColor = Color(0xFF8E8BE1);
 const kTextColor = Colors.black;
 
 const kAnimationDuration = Duration(milliseconds: 200);

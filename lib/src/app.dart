@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:august_plus/src/screen/home/home.dart';
+import 'package:august_plus/src/screen/pages/Doctor/doctor_home.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/src/theme/app_theme.dart';
 import 'package:august_plus/utils/errordialog.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const Home(),
         '/splash': (context) => const SplashBody(),
         '/login': (context) => const SignInCumLogInScreen(),
+        '/dochome': (context) => const DoctorHomePage(),
       },
     );
   }
@@ -46,12 +48,14 @@ class _HandleOnboardingState extends State<HandleOnboarding> {
     super.initState();
 
     setTimer();
-    requestPermission();
-    wf = WeatherFactory(
-      "752c76ba36af06e471e0cb73908fa033",
-      language: Language.ENGLISH,
-    );
-    getKey();
+    if (sharedPreferences.getString('role') == 'Patient') {
+      requestPermission();
+      wf = WeatherFactory(
+        "752c76ba36af06e471e0cb73908fa033",
+        language: Language.ENGLISH,
+      );
+      getKey();
+    }
   }
 
   getKey() {
@@ -128,11 +132,14 @@ class _HandleOnboardingState extends State<HandleOnboarding> {
   void setTimer() {
     Timer(const Duration(seconds: 2), () {
       if (firebaseAuth.currentUser != null) {
-        Navigator.pushNamed(context, '/home');
+        if (sharedPreferences.getString('role') == 'Patient') {
+          //patient
+          Navigator.pushNamed(context, '/home');
+        } else {
+          Navigator.pushNamed(context, '/dochome');
+        }
       } else {
         Navigator.pushNamed(context, '/splash');
-        // Navigator.push(context,
-        //     MaterialPageRoute(builder: (context) => const SplashBody()));
       }
     });
   }

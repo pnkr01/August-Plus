@@ -1,3 +1,4 @@
+import 'package:august_plus/src/constant/constant.dart';
 import 'package:flutter/material.dart';
 
 class ProfileHeader extends StatefulWidget {
@@ -17,13 +18,13 @@ class _ProfileHeaderState extends State<ProfileHeader> {
     final Size size = MediaQuery.of(context).size;
     return Positioned(
       top: 0,
-      bottom: size.height - 500,
+      bottom: size.height - 300,
       left: 0,
       right: 0,
       child: ClipPath(
         clipper: CustomClipPath(),
         child: Container(
-          color: const Color(0xFF3A7DDB),
+          color: kPrimaryColor,
           child: Padding(
             padding: const EdgeInsets.only(
               top: 60,

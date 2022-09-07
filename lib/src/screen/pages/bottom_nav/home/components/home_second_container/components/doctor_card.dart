@@ -1,17 +1,31 @@
-import 'package:august_plus/src/size_configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:august_plus/src/size_configuration.dart';
 
 class DoctorCard extends StatelessWidget {
   const DoctorCard({
     Key? key,
+    //required this.doctImage,
     this.aspectRetio = 1.02,
     required this.doctImage,
+    required this.name,
+    required this.address,
+    required this.experience,
+    required this.expertise,
+    required this.hp,
+    required this.rating,
     required this.width,
   }) : super(key: key);
 
   final double width, aspectRetio;
   final String doctImage;
+  final String name;
+  final String address;
+  final String experience;
+  final String expertise;
+  final String hp;
+  final String rating;
 
   @override
   Widget build(BuildContext context) {
@@ -39,18 +53,18 @@ class DoctorCard extends StatelessWidget {
                   height: 140,
                   width: 180,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18.0),
-                    child: Image.asset(
-                      doctImage,
-                      alignment: Alignment.topRight,
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(18.0),
+                      child: Image.network(
+                        doctImage,
+                        alignment: Alignment.topRight,
+                        fit: BoxFit.fill,
+                      )),
                 ),
-                const Text('Dr D.K Singhai'),
+                Text(name),
                 const SizedBox(
                   height: 8,
                 ),
-                const Text('Phscitraist'),
+                Text(expertise),
                 const SizedBox(
                   height: 10,
                 ),

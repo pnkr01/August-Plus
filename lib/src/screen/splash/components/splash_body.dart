@@ -1,3 +1,4 @@
+import 'package:august_plus/service/DS/decision_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../package/custom_splash_screen.dart';
@@ -43,10 +44,8 @@ class SplashBody extends StatelessWidget {
           );
         },
         onSkipButton: () {
-          Navigator.pushNamed(
-            context,
-            '/login',
-          );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const DecisionScreen()));
         },
       ),
     );

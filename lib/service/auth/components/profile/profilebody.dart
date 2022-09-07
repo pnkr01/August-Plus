@@ -1,10 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:august_plus/src/constant/constant.dart';
 import 'package:august_plus/src/screen/home/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../src/size_configuration.dart';
 import '../../../../utils/errordialog.dart';
 import '../../../../utils/global.dart';
@@ -26,7 +26,12 @@ class _BuildProfileBodyState extends State<BuildProfileBody> {
     'Female',
     'Male',
   ];
+  List<String> role = [
+    'Patient',
+    'Doctor',
+  ];
   String selectedItem = 'Female';
+  String roleItem = 'Patient';
   final TextEditingController fullName = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController address = TextEditingController();
@@ -35,7 +40,7 @@ class _BuildProfileBodyState extends State<BuildProfileBody> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Positioned(
-      top: size.height * 0.3,
+      top: size.height * 0.2,
       bottom: 0,
       left: size.width * 0.0002,
       right: size.width * 0.0002,
@@ -151,6 +156,7 @@ class _BuildProfileBodyState extends State<BuildProfileBody> {
                   width: double.infinity,
                   height: 40,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(primary: kSecondaryColor),
                     onPressed: () {
                       validateForm(context);
                       //TODOS: Send to account sucessfully created screen.
@@ -180,18 +186,19 @@ class _BuildProfileBodyState extends State<BuildProfileBody> {
           context: context,
           builder: (context) {
             return const LoadingDialog(
-              message: "",
+              message: "Please Wait",
             );
           });
       await saveDataToFirebase(context);
     } else {
       showDialog(
-          context: context,
-          builder: (context) {
-            return const ErrorDialog(
-              message: "Please fill all details",
-            );
-          });
+        context: context,
+        builder: (context) {
+          return const ErrorDialog(
+            message: "Please fill all details",
+          );
+        },
+      );
     }
   }
 
@@ -211,6 +218,7 @@ class _BuildProfileBodyState extends State<BuildProfileBody> {
             "address": address.text.trim(),
             'age': int.parse(age.text),
             'gender': selectedItem.trim(),
+            'role': sharedPreferences.getString('role'),
           }),
         )
         .then((value) async {
@@ -219,6 +227,7 @@ class _BuildProfileBodyState extends State<BuildProfileBody> {
       await sharedPreferences.setString("gender", selectedItem.trim());
       await sharedPreferences.setString("address", address.text.trim());
       await sharedPreferences.setString("name", fullName.text.trim());
+      await sharedPreferences.setString("role", sharedPreferences.getString('role')!);
       await sharedPreferences.setString(
           "phone", sharedPreferences.getString("phone")!);
       Navigator.pop(context);

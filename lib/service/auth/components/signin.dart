@@ -1,3 +1,4 @@
+import 'package:august_plus/service/auth/components/old_user/old_otp_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +25,17 @@ class _SignInCumLogInScreen extends State<SignInCumLogInScreen> {
           context: context,
           builder: (context) {
             return const LoadingDialog(
-              message: "",
+              message: "Please Wait",
             );
           });
-      checkUserExistOrNot();
+      // checkUserExistOrNot();
+      if (sharedPreferences.getString('role') == 'Patient') {
+        print('lllllllllllllllllllllllllllll');
+        checkUserExistOrNot();
+      } else {
+        print('dddddddddddddddddddddddd');
+        checkDoctorExistsOrNot();
+      }
     } else {
       showDialog(
         context: context,
@@ -57,6 +65,52 @@ class _SignInCumLogInScreen extends State<SignInCumLogInScreen> {
   }
 
   //TODOS: validate Ends
+
+  //TODOS: Doc Check
+
+  void checkDoctorExistsOrNot() async {
+    await FirebaseFirestore.instance
+        .collection('doctors')
+        .doc(phoneController.text)
+        .get()
+        .then((value) {
+      if (value.exists) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => OldUserScreenOtp(
+                      phone: phoneController.text,
+                    )));
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+              title: Column(
+            children: [
+              const ListTile(
+                leading: Icon(
+                  Icons.close,
+                  color: Colors.red,
+                ),
+                title: Text('no data exist with this number '),
+              ),
+              SizedBox(
+                width: double.infinity - 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('close'),
+                ),
+              ),
+            ],
+          )),
+        );
+      }
+    });
+  }
+
+  //TODOS: Doc Check End
 
   //TODOS: CHECKUSER START
 

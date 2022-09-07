@@ -10,3 +10,8 @@ void main() async {
   sharedPreferences = await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
+
+
+
+//TODOS : WORK ON DETAILS DOCCTOR SCREEN, BOOK SECTION AND HOME DOC OPTION + IONS CLASS A,H,H,rEPORT
+//6-9-2022
