@@ -16,7 +16,6 @@ class HomeUpperThirdContainer extends StatefulWidget {
 }
 
 class _HomeUpperThirdContainerState extends State<HomeUpperThirdContainer> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,7 +31,10 @@ class _HomeUpperThirdContainerState extends State<HomeUpperThirdContainer> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            TextButton(onPressed: () {}, child: const Text('See More'))
+            TextButton(
+              onPressed: () {},
+              child: const Text('See More'),
+            ),
           ],
         ),
         SingleChildScrollView(

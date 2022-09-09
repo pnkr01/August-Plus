@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: theme(),
       title: 'Doctor Plus',
-      home: const DoctorDetailScreen(),
+      home: const HandleOnboarding(),
       routes: {
         '/home': (context) => const Home(),
         '/splash': (context) => const SplashBody(),

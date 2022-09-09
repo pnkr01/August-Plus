@@ -9,6 +9,7 @@ FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 AuthClass authClass = AuthClass();
 void showSnackBar(BuildContext context, String text) {
   final snakbar = SnackBar(
+    backgroundColor: Colors.green,
     duration: const Duration(seconds: 1),
     content: Text(text),
     behavior: SnackBarBehavior.floating,

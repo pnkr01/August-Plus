@@ -1,9 +1,31 @@
-import 'package:august_plus/src/constant/constant.dart';
-import 'package:august_plus/src/size_configuration.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'package:august_plus/src/constant/constant.dart';
+import 'package:august_plus/src/size_configuration.dart';
+import 'package:august_plus/utils/global.dart';
+import 'package:august_plus/utils/loading_dialog.dart';
+
 class DoctorDetailScreen extends StatelessWidget {
-  const DoctorDetailScreen({Key? key}) : super(key: key);
+  final String id;
+  final String name;
+  final String desc;
+  final String docImage;
+  final String patient;
+  final String exp;
+  final String expt;
+  final String rating;
+  const DoctorDetailScreen({
+    Key? key,
+    required this.id,
+    required this.name,
+    required this.desc,
+    required this.docImage,
+    required this.patient,
+    required this.exp,
+    required this.expt,
+    required this.rating,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,65 +55,64 @@ class DoctorDetailScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Stack(children: [
-        Positioned(
-          bottom: getProportionateScreenHeight(550),
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-            decoration: const BoxDecoration(
-              color: kPrimaryColor,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(24.0),
-                bottomRight: Radius.circular(24.0),
+      body: Stack(
+        children: [
+          Positioned(
+            bottom: getProportionateScreenHeight(550),
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              decoration: const BoxDecoration(
+                color: kPrimaryColor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(24.0),
+                  bottomRight: Radius.circular(24.0),
+                ),
               ),
             ),
           ),
-        ),
-        Positioned(
-          top: 80,
-          left: 20,
-          right: 20,
-          bottom: 480,
-          child: Container(
-            decoration: decoration(),
-            child: Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        'Dr D.K Singhal',
-                        style: textStyle().copyWith(
-                          color: Colors.black,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+          Positioned(
+            top: 80,
+            left: 20,
+            right: 20,
+            bottom: 480,
+            child: Container(
+              decoration: decoration(),
+              child: Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          name,
+                          style: textStyle().copyWith(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        'Child Specialist',
-                        style: textStyle().copyWith(
-                          color: const Color.fromARGB(255, 124, 120, 120),
-                          fontSize: 18.0,
+                        const SizedBox(
+                          height: 20,
                         ),
-                      ),
-                    ],
-                  ),
-                  Image.network(
-                    "https://img.freepik.com/free-photo/woman-doctor-wearing-lab-coat-with-stethoscope-isolated_1303-29791.jpg?w=1060&t=st=1662569329~exp=1662569929~hmac=20a080f1046275b94c1fc7a5a05610387887a0ca8351cb4576f7ac7130a1b5d8",
-                  ),
-                ],
+                        Text(
+                          expt,
+                          style: textStyle().copyWith(
+                            color: const Color.fromARGB(255, 124, 120, 120),
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Image.network(docImage),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        Positioned(
+          Positioned(
             top: 250,
             left: 20,
             right: 20,
@@ -102,6 +123,28 @@ class DoctorDetailScreen extends StatelessWidget {
                   height: 100,
                   width: size.width / 3.8,
                   decoration: decoration(),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Patients',
+                        style: textStyle()
+                            .copyWith(color: Colors.grey, fontSize: 14.0),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        patient,
+                        style: textStyle().copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   width: 15,
@@ -110,6 +153,40 @@ class DoctorDetailScreen extends StatelessWidget {
                   height: 100,
                   width: size.width / 3.8,
                   decoration: decoration(),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Experience',
+                        style: textStyle()
+                            .copyWith(color: Colors.grey, fontSize: 14.0),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(children: [
+                        SizedBox(
+                          width: size.width / 28,
+                        ),
+                        Text(
+                          exp,
+                          style: textStyle().copyWith(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          ' Years',
+                          style: textStyle().copyWith(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ]),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   width: 15,
@@ -118,34 +195,104 @@ class DoctorDetailScreen extends StatelessWidget {
                   height: 100,
                   width: size.width / 3.8,
                   decoration: decoration(),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Rating',
+                        style: textStyle()
+                            .copyWith(color: Colors.grey, fontSize: 14.0),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        rating,
+                        style: textStyle().copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
-            )
-            // SingleChildScrollView(
-            //   child: Row(
-            //     children: List.generate(
-            //       3,
-            //       (index) => boxContainerForDoctors(),
-            //     ),
-            //   ),
-            // ),
-            )
-      ]),
+            ),
+          ),
+          Positioned(
+            top: 380,
+            left: 20,
+            right: 20,
+            bottom: 100,
+            child: Container(
+              height: 50,
+              decoration: decoration(),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'About Doctors',
+                      style: textStyle().copyWith(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Flexible(
+                        child: Text(
+                      desc,
+                    )),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 650,
+            left: 20,
+            right: 20,
+            bottom: 10,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: kPrimaryColor,
+                shape: const StadiumBorder(),
+              ),
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: ((context) =>
+                        const LoadingDialog(message: 'Please Wait')));
+                bookAppointement(context, id);
+              },
+              child: const Text('Book Appointemet'),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
-boxContainerForDoctors() {
-  return Column(
-    children: [
-      Container(
-        height: 50,
-        width: double.infinity,
-        color: Colors.red,
-      ),
-      SizedBox(
-        width: getProportionateScreenWidth(20),
-      )
-    ],
-  );
+bookAppointement(BuildContext context, String id) async {
+  await FirebaseFirestore.instance
+      .collection('doctors')
+      .doc(id)
+      .collection('pat')
+      .doc()
+      .set({
+    'patname': sharedPreferences.getString('name'),
+    'patnum': sharedPreferences.getString('phone'),
+  }).then((value) {
+    Navigator.pop(context);
+    showSnackBar(
+      context,
+      'Booked Sucessfully',
+    );
+  });
 }
