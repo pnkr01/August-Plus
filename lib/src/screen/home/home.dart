@@ -5,7 +5,6 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../../size_configuration.dart';
 import '../pages/bottom_nav/ambulance/ambulance_nav.dart';
-import '../pages/bottom_nav/appointement/appointement_nav.dart';
 import '../pages/bottom_nav/home/home_nav.dart';
 import '../pages/bottom_nav/message/message_nav.dart';
 
@@ -21,7 +20,6 @@ class _HomeState extends State<Home> {
   final screen = [
     const HomeNav(),
     const MessageNav(),
-    const ApoointementNav(),
     const AmbulanceNav(),
     const Profile1(),
   ];

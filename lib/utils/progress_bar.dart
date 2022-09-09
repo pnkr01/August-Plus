@@ -7,7 +7,7 @@ circularProgress() {
     padding: const EdgeInsets.only(top: 12.0),
     alignment: Alignment.center,
     child: const CircularProgressIndicator(
-      backgroundColor: Colors.blue,
+      backgroundColor: kPrimaryColor,
       valueColor: AlwaysStoppedAnimation(kPrimaryColor),
     ),
   );

@@ -1,3 +1,5 @@
+import 'package:august_plus/utils/progress_bar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -122,12 +124,19 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Image.network(
-                        widget.docImage,
-                        width: 100,
-                      ),
-                    ),
+                        padding: const EdgeInsets.only(right: 5.0),
+                        child: CachedNetworkImage(
+                          width: 100,
+                          imageUrl: widget.docImage,
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) =>
+                                  circularProgress(),
+                        ),
+                        //  Image.network(
+                        //   widget.docImage,
+                        //   width: 100,
+                        // ),
+                        ),
                   ],
                 ),
               ),

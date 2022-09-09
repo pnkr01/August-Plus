@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:august_plus/src/size_configuration.dart';
+
+import '../../../../../../../../utils/progress_bar.dart';
 
 class DoctorCard extends StatelessWidget {
   const DoctorCard({
@@ -45,12 +48,22 @@ class DoctorCard extends StatelessWidget {
                   height: 140,
                   width: 180,
                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(18.0),
-                      child: Image.network(
-                        doctImage,
-                        alignment: Alignment.topRight,
-                        fit: BoxFit.fill,
-                      )),
+                    borderRadius: BorderRadius.circular(18.0),
+                    child: CachedNetworkImage(
+                      width: 100,
+                      alignment: Alignment.topRight,
+                      fit: BoxFit.fill,
+                      imageUrl: doctImage,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) =>
+                              circularProgress(),
+                    ),
+                    // Image.network(
+                    //   doctImage,
+                    // alignment: Alignment.topRight,
+                    // fit: BoxFit.fill,
+                    // ),
+                  ),
                 ),
                 const SizedBox(
                   height: 4,
