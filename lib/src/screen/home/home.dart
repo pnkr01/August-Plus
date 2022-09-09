@@ -20,8 +20,8 @@ class _HomeState extends State<Home> {
   final screen = [
     const HomeNav(),
     const MessageNav(),
-    const AmbulanceNav(),
     const Profile1(),
+    const AmbulanceNav(),
   ];
 
   @override
@@ -44,14 +44,16 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: GNav(
+              child: 
+              
+              GNav(
                 rippleColor: Colors.blue[300]!,
                 hoverColor: Colors.grey[100]!,
                 gap: 8,
                 activeColor: const Color(0xFF5E63E0),
                 iconSize: 24,
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
                 duration: const Duration(milliseconds: 400),
                 tabBackgroundColor: Colors.grey[100]!,
                 color: const Color(0xFFC9C9C9),
@@ -61,20 +63,16 @@ class _HomeState extends State<Home> {
                     text: 'Home',
                   ),
                   GButton(
-                    icon: FontAwesomeIcons.facebookMessenger,
-                    text: 'Message',
-                  ),
-                  GButton(
                     icon: FontAwesomeIcons.bolt,
                     text: 'AI BOT',
                   ),
                   GButton(
-                    icon: FontAwesomeIcons.truckMedical,
-                    text: 'Ambulance',
-                  ),
-                  GButton(
                     icon: FontAwesomeIcons.person,
                     text: 'Profile',
+                  ),
+                  GButton(
+                    icon: FontAwesomeIcons.truckMedical,
+                    text: 'Ambulance',
                   ),
                 ],
                 selectedIndex: _selectedIndex,

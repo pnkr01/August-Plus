@@ -31,7 +31,8 @@ class _SignInCumLogInScreen extends State<SignInCumLogInScreen> {
             );
           });
       // checkUserExistOrNot();
-      if (sharedPreferences.getString('role') == 'Patient') {
+      if (sharedPreferences.getString('role') == 'Patient' ||
+          sharedPreferences.getString('role') == null) {
         log('lllllllllllllllllllllllllllll');
         checkUserExistOrNot();
       } else {

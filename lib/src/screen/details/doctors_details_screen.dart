@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:august_plus/utils/loading_dialog.dart';
 import 'package:august_plus/utils/progress_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:august_plus/src/constant/constant.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/utils/global.dart';
-import 'package:august_plus/utils/loading_dialog.dart';
+import 'package:intl/intl.dart';
 
 bool? isBooked;
 
@@ -36,6 +39,9 @@ class DoctorDetailScreen extends StatefulWidget {
 }
 
 class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
+  late DateTime date;
+  String? fT;
+  String? fD;
   @override
   Widget build(BuildContext context) {
     isBooked = sharedPreferences.getBool(widget.id) ?? false;
@@ -124,19 +130,19 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                       ],
                     ),
                     Padding(
-                        padding: const EdgeInsets.only(right: 5.0),
-                        child: CachedNetworkImage(
-                          width: 100,
-                          imageUrl: widget.docImage,
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) =>
-                                  circularProgress(),
-                        ),
-                        //  Image.network(
-                        //   widget.docImage,
-                        //   width: 100,
-                        // ),
-                        ),
+                      padding: const EdgeInsets.only(right: 5.0),
+                      child: CachedNetworkImage(
+                        width: 100,
+                        imageUrl: widget.docImage,
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) =>
+                                circularProgress(),
+                      ),
+                      //  Image.network(
+                      //   widget.docImage,
+                      //   width: 100,
+                      // ),
+                    ),
                   ],
                 ),
               ),
@@ -294,12 +300,6 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                 shape: const StadiumBorder(),
               ),
               onPressed: () async {
-                !isBooked!
-                    ? showDialog(
-                        context: context,
-                        builder: ((context) =>
-                            const LoadingDialog(message: 'Please Wait')))
-                    : null;
                 isBooked!
                     ? showSnackBar(
                         context,
@@ -307,14 +307,43 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                         Colors.red,
                       )
                     : {
-                        await bookAppointement(context, widget.id),
-                        setState(() {
-                          sharedPreferences.setBool(widget.id, true);
-                        }),
+                        if (fD == null)
+                          {
+                            await selectDateAndTime(context),
+                          }
+                        else if (fT == null && fD != null)
+                          {
+                            await selectTime(context, fD!),
+                          }
+                        else if (fD != null && fT != null)
+                          {
+                            showDialog(
+                              context: context,
+                              builder: ((context) =>
+                                  const LoadingDialog(message: 'Please Wait')),
+                            ),
+                            await bookAppointement(
+                              context,
+                              widget.id,
+                              widget.name,
+                              widget.expt,
+                              fD!,
+                              fT!,
+                            ),
+                            setState(() {
+                              sharedPreferences.setBool(widget.id, true);
+                            })
+                          }
                       };
               },
-              child: isBooked!
-                  ? const Text('Booked')
+              child: !isBooked!
+                  ? Text(
+                      fD == null
+                          ? 'Select Date'
+                          : fT == null
+                              ? 'Select Time'
+                              : 'Book Appointment',
+                    )
                   : const Text('Book Appointemet'),
             ),
           ),
@@ -323,7 +352,55 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
     );
   }
 
-  bookAppointement(BuildContext context, String id) async {
+  Future selectDateAndTime(BuildContext context) async {
+    final initialDate = DateTime.now();
+    final newDate = await showDatePicker(
+      context: context,
+      initialDate: initialDate,
+      firstDate: DateTime(DateTime.now().year - 5),
+      lastDate: DateTime(DateTime.now().year + 5),
+    );
+    if (newDate != null) {
+      date = newDate;
+      fD = DateFormat().add_yMMMEd().format(date);
+      selectTime(context, fD ?? 'Sep 11, 2022');
+      setState(() {});
+      // log(DateFormat().add_yMMMEd().format(date));
+    } else {
+      showSnackBar(
+        context,
+        'Choose Date',
+        Colors.green,
+      );
+    }
+  }
+
+  Future selectTime(BuildContext context, String date) async {
+    const initialTime = TimeOfDay(hour: 9, minute: 30);
+    final newTime = await showTimePicker(
+      context: context,
+      initialTime: initialTime,
+    );
+    if (newTime != null) {
+      fT = newTime.hour.toString() + newTime.minute.toString();
+      showSnackBar(
+        context,
+        'Book Now',
+        Colors.green,
+      );
+      setState(() {});
+    } else {
+      showSnackBar(
+        context,
+        'Please select time',
+        Colors.red,
+      );
+    }
+    // log(newTime.hour);
+  }
+
+  bookAppointement(BuildContext context, String id, String docName, String expt,
+      String date, String time) async {
     await FirebaseFirestore.instance
         .collection('doctors')
         .doc(id)
@@ -332,6 +409,18 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
         .set({
       'patname': sharedPreferences.getString('name'),
       'patnum': sharedPreferences.getString('phone'),
+    }).then((value) {
+      FirebaseFirestore.instance
+          .collection('phone')
+          .doc(sharedPreferences.getString('phone'))
+          .collection('apoint')
+          .doc()
+          .set({
+        'doctName': docName,
+        'docExpt': expt,
+        'date': date,
+        'time': time,
+      });
     }).then((value) {
       sharedPreferences.setBool(id, true);
       Navigator.pop(context);

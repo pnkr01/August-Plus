@@ -90,7 +90,8 @@ class _OldUserScreenOtpState extends State<OldUserScreenOtp> {
   }
 
   Future<void> getDataAndSaveLocally() async {
-    if (sharedPreferences.getString('role') == 'Patient') {
+    if (sharedPreferences.getString('role') == 'Patient' ||
+        sharedPreferences.getString('role') == null) {
       await FirebaseFirestore.instance
           .collection("phone")
           .doc(widget.phone)

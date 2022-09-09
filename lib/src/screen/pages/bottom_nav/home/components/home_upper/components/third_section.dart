@@ -25,7 +25,7 @@ class ThirdSection extends StatelessWidget {
       '   Reports',
     ];
     List<Widget> widget = [
-      const Apoointement(),
+      const SheduleSection(),
       const NearHospitalOnMap(),
       const HistoryScetion(),
       const ReportSection(),
