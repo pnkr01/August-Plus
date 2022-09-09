@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:august_plus/service/auth/components/old_user/old_otp_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
@@ -30,10 +32,10 @@ class _SignInCumLogInScreen extends State<SignInCumLogInScreen> {
           });
       // checkUserExistOrNot();
       if (sharedPreferences.getString('role') == 'Patient') {
-        print('lllllllllllllllllllllllllllll');
+        log('lllllllllllllllllllllllllllll');
         checkUserExistOrNot();
       } else {
-        print('dddddddddddddddddddddddd');
+        log('dddddddddddddddddddddddd');
         checkDoctorExistsOrNot();
       }
     } else {
@@ -71,16 +73,18 @@ class _SignInCumLogInScreen extends State<SignInCumLogInScreen> {
   void checkDoctorExistsOrNot() async {
     await FirebaseFirestore.instance
         .collection('doctors')
-        .doc(phoneController.text)
+        .doc(phoneController.text.substring(0, 1))
         .get()
         .then((value) {
       if (value.exists) {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => OldUserScreenOtp(
-                      phone: phoneController.text,
-                    )));
+          context,
+          MaterialPageRoute(
+            builder: (context) => OldUserScreenOtp(
+              phone: phoneController.text,
+            ),
+          ),
+        );
       } else {
         showDialog(
           context: context,

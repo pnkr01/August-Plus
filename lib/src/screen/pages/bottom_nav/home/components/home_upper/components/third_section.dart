@@ -1,3 +1,7 @@
+import 'package:august_plus/src/screen/details/appointement/appointement_nav.dart';
+import 'package:august_plus/src/screen/details/history/history.dart';
+import 'package:august_plus/src/screen/details/hospital/near_hospital.dart';
+import 'package:august_plus/src/screen/details/report/reports.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -20,13 +24,27 @@ class ThirdSection extends StatelessWidget {
       '   History',
       '   Reports',
     ];
+    List<Widget> widget = [
+      const Apoointement(),
+      const NearHospitalOnMap(),
+      const HistoryScetion(),
+      const ReportSection(),
+    ];
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: List.generate(
         iconData.length,
-        (index) => CreateContainerWithIcon(
-          iconData: iconData[index],
-          iconText: iconText[index],
+        (index) => GestureDetector(
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => widget[index],
+            ),
+          ),
+          child: CreateContainerWithIcon(
+            iconData: iconData[index],
+            iconText: iconText[index],
+          ),
         ),
       ),
     );
