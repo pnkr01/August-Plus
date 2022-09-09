@@ -85,7 +85,7 @@ class _OldUserScreenOtpState extends State<OldUserScreenOtp> {
       });
     } else {
       Navigator.pop(context);
-      showSnackBar(context, "Wrong OTP entered");
+      showSnackBar(context, 'Wrong OTP entered', Colors.red);
     }
   }
 
@@ -113,7 +113,7 @@ class _OldUserScreenOtpState extends State<OldUserScreenOtp> {
             builder: (context) => const Home(),
           ),
         );
-        showSnackBar(context, "LoggedIn Sucessfully");
+        showSnackBar(context, "LoggedIn Sucessfully", Colors.green);
       });
     } else {
       await FirebaseFirestore.instance
@@ -134,7 +134,7 @@ class _OldUserScreenOtpState extends State<OldUserScreenOtp> {
             builder: (context) => const DoctorHomePage(),
           ),
         );
-        showSnackBar(context, "LoggedIn Sucessfully");
+        showSnackBar(context, 'LoggedIn Sucessfully', Colors.green);
       }).then((value) {
         setState(() {
           start = 0;

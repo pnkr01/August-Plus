@@ -486,7 +486,13 @@ bookAmbulance(
       })
       .then((value) => Navigator.pop(context))
       .then((value) => Navigator.pop(context))
-      .then((value) => showSnackBar(context, 'Booked Sucessfully'))
+      .then(
+        (value) => showSnackBar(
+          context,
+          'Booked Sucessfully',
+          Colors.green,
+        ),
+      )
       .then((value) => showModalBottomSheet(
           backgroundColor: Colors.green,
           enableDrag: true,

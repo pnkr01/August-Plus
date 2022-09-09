@@ -10,22 +10,14 @@ class DoctorCard extends StatelessWidget {
     this.aspectRetio = 1.02,
     required this.doctImage,
     required this.name,
-    required this.address,
-    required this.experience,
     required this.expertise,
-    required this.hp,
-    required this.rating,
     required this.width,
   }) : super(key: key);
 
   final double width, aspectRetio;
   final String doctImage;
   final String name;
-  final String address;
-  final String experience;
   final String expertise;
-  final String hp;
-  final String rating;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +51,9 @@ class DoctorCard extends StatelessWidget {
                         alignment: Alignment.topRight,
                         fit: BoxFit.fill,
                       )),
+                ),
+                const SizedBox(
+                  height: 4,
                 ),
                 Text(name),
                 const SizedBox(

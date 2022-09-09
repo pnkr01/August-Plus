@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:august_plus/src/constant/shimmer.dart';
+import 'package:august_plus/src/screen/details/doctors_details_screen.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -45,15 +48,32 @@ class HomeUpperSecondContainer extends StatelessWidget {
                     ...List.generate(
                       snapshot.data.docs.length,
                       (index) {
-                        return DoctorCard(
-                          doctImage: snapshot.data.docs[index]['img'],
-                          width: 200,
-                          name: snapshot.data.docs[index]['name'],
-                          address: snapshot.data.docs[index]['add'],
-                          experience: snapshot.data.docs[index]['exp'],
-                          expertise: snapshot.data.docs[index]['et'],
-                          hp: snapshot.data.docs[index]['hp'],
-                          rating: snapshot.data.docs[index]['ra'],
+                        return GestureDetector(
+                          onTap: (() {
+                            log('clicked');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) => DoctorDetailScreen(
+                                      id: snapshot.data.docs[index]['id'],
+                                      name: snapshot.data.docs[index]['name'],
+                                      desc: snapshot.data.docs[index]['desc'],
+                                      docImage: snapshot.data.docs[index]
+                                          ['img'],
+                                      patient: snapshot.data.docs[index]['hp'],
+                                      exp: snapshot.data.docs[index]['exp'],
+                                      expt: snapshot.data.docs[index]['et'],
+                                      rating: snapshot.data.docs[index]['ra'],
+                                    )),
+                              ),
+                            );
+                          }),
+                          child: DoctorCard(
+                            doctImage: snapshot.data.docs[index]['img'],
+                            width: 200,
+                            name: snapshot.data.docs[index]['name'],
+                            expertise: snapshot.data.docs[index]['et'],
+                          ),
                         );
                       },
                     ),

@@ -6,7 +6,9 @@ import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/utils/global.dart';
 import 'package:august_plus/utils/loading_dialog.dart';
 
-class DoctorDetailScreen extends StatelessWidget {
+bool? isBooked;
+
+class DoctorDetailScreen extends StatefulWidget {
   final String id;
   final String name;
   final String desc;
@@ -28,11 +30,18 @@ class DoctorDetailScreen extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<DoctorDetailScreen> createState() => _DoctorDetailScreenState();
+}
+
+class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
+  @override
   Widget build(BuildContext context) {
+    isBooked = sharedPreferences.getBool(widget.id) ?? false;
     Size size = MediaQuery.of(context).size;
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: kPrimaryColor,
         title: Row(
           children: [
@@ -80,14 +89,20 @@ class DoctorDetailScreen extends StatelessWidget {
             child: Container(
               decoration: decoration(),
               child: Padding(
-                padding: const EdgeInsets.all(40.0),
+                padding: const EdgeInsets.only(
+                  left: 40.0,
+                  top: 40.0,
+                  right: 20.0,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          name,
+                          widget.name,
                           style: textStyle().copyWith(
                             color: Colors.black,
                             fontSize: 20.0,
@@ -98,7 +113,7 @@ class DoctorDetailScreen extends StatelessWidget {
                           height: 20,
                         ),
                         Text(
-                          expt,
+                          widget.expt,
                           style: textStyle().copyWith(
                             color: const Color.fromARGB(255, 124, 120, 120),
                             fontSize: 18.0,
@@ -106,7 +121,13 @@ class DoctorDetailScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Image.network(docImage),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 5.0),
+                      child: Image.network(
+                        widget.docImage,
+                        width: 100,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -137,7 +158,7 @@ class DoctorDetailScreen extends StatelessWidget {
                         height: 20,
                       ),
                       Text(
-                        patient,
+                        "${widget.patient} +",
                         style: textStyle().copyWith(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -171,7 +192,7 @@ class DoctorDetailScreen extends StatelessWidget {
                           width: size.width / 28,
                         ),
                         Text(
-                          exp,
+                          widget.exp,
                           style: textStyle().copyWith(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -209,7 +230,7 @@ class DoctorDetailScreen extends StatelessWidget {
                         height: 20,
                       ),
                       Text(
-                        rating,
+                        "${widget.rating} .0",
                         style: textStyle().copyWith(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -246,7 +267,7 @@ class DoctorDetailScreen extends StatelessWidget {
                     ),
                     Flexible(
                         child: Text(
-                      desc,
+                      widget.desc,
                     )),
                   ],
                 ),
@@ -260,39 +281,56 @@ class DoctorDetailScreen extends StatelessWidget {
             bottom: 10,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: kPrimaryColor,
+                primary: isBooked! ? Colors.grey : kPrimaryColor,
                 shape: const StadiumBorder(),
               ),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: ((context) =>
-                        const LoadingDialog(message: 'Please Wait')));
-                bookAppointement(context, id);
+              onPressed: () async {
+                !isBooked!
+                    ? showDialog(
+                        context: context,
+                        builder: ((context) =>
+                            const LoadingDialog(message: 'Please Wait')))
+                    : null;
+                isBooked!
+                    ? showSnackBar(
+                        context,
+                        'you have booked this today at ${DateTime.now().toIso8601String().substring(12, 16)}',
+                        Colors.red,
+                      )
+                    : {
+                        await bookAppointement(context, widget.id),
+                        setState(() {
+                          sharedPreferences.setBool(widget.id, true);
+                        }),
+                      };
               },
-              child: const Text('Book Appointemet'),
+              child: isBooked!
+                  ? const Text('Booked')
+                  : const Text('Book Appointemet'),
             ),
           ),
         ],
       ),
     );
   }
-}
 
-bookAppointement(BuildContext context, String id) async {
-  await FirebaseFirestore.instance
-      .collection('doctors')
-      .doc(id)
-      .collection('pat')
-      .doc()
-      .set({
-    'patname': sharedPreferences.getString('name'),
-    'patnum': sharedPreferences.getString('phone'),
-  }).then((value) {
-    Navigator.pop(context);
-    showSnackBar(
-      context,
-      'Booked Sucessfully',
-    );
-  });
+  bookAppointement(BuildContext context, String id) async {
+    await FirebaseFirestore.instance
+        .collection('doctors')
+        .doc(id)
+        .collection('pat')
+        .doc()
+        .set({
+      'patname': sharedPreferences.getString('name'),
+      'patnum': sharedPreferences.getString('phone'),
+    }).then((value) {
+      sharedPreferences.setBool(id, true);
+      Navigator.pop(context);
+      showSnackBar(
+        context,
+        'Booked Sucessfully',
+        Colors.green,
+      );
+    });
+  }
 }

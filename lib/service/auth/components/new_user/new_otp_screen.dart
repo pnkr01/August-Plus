@@ -91,7 +91,7 @@ class _NewUserScreenOtpState extends State<NewUserScreenOtp> {
       });
     } else {
       Navigator.pop(context);
-      showSnackBar(context, "Wrong OTP entered");
+      showSnackBar(context, 'Wrong OTP entered', Colors.red);
     }
     //   //TODOS: 1. Retrieve user info from firebase.
     //   //TODOS: 2. Save locally also

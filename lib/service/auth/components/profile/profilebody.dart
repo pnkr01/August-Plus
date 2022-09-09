@@ -227,7 +227,8 @@ class _BuildProfileBodyState extends State<BuildProfileBody> {
       await sharedPreferences.setString("gender", selectedItem.trim());
       await sharedPreferences.setString("address", address.text.trim());
       await sharedPreferences.setString("name", fullName.text.trim());
-      await sharedPreferences.setString("role", sharedPreferences.getString('role')!);
+      await sharedPreferences.setString(
+          "role", sharedPreferences.getString('role')!);
       await sharedPreferences.setString(
           "phone", sharedPreferences.getString("phone")!);
       Navigator.pop(context);
@@ -239,7 +240,7 @@ class _BuildProfileBodyState extends State<BuildProfileBody> {
         ),
         (route) => false,
       );
-      showSnackBar(context, "LoggedIn Sucessfully");
+      showSnackBar(context, 'LoggedIn Sucessfully', Colors.green);
     });
   }
 }
