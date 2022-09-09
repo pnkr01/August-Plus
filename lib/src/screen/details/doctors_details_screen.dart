@@ -420,6 +420,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
         'docExpt': expt,
         'date': date,
         'time': time,
+        'img': widget.docImage,
       });
     }).then((value) {
       sharedPreferences.setBool(id, true);

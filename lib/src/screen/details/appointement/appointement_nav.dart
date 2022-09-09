@@ -1,6 +1,10 @@
 import 'package:august_plus/src/constant/constant.dart';
+import 'package:august_plus/src/screen/details/appointement/design/design_event.dart';
+import 'package:august_plus/utils/global.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+import '../../../constant/shimmer.dart';
 
 class SheduleSection extends StatefulWidget {
   const SheduleSection({Key? key}) : super(key: key);
@@ -11,13 +15,11 @@ class SheduleSection extends StatefulWidget {
 
 class _SheduleSectionState extends State<SheduleSection>
     with SingleTickerProviderStateMixin, RestorationMixin {
-  bool isSliding = false;
-  List<String> item = [
-    'Badrinath',
-    'Dwarka',
-    'Puri',
-    'Rameswaram',
-  ];
+  Stream stream = FirebaseFirestore.instance
+      .collection('phone')
+      .doc(sharedPreferences.getString('phone'))
+      .collection('apoint')
+      .snapshots();
   // String? selectedItem = sharedPreferences!.getString('dham') ?? 'Puri';
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
@@ -111,10 +113,14 @@ class _SheduleSectionState extends State<SheduleSection>
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: const [
-                    Text('data'),
-                    Text('data'),
-                    Text('data')
+                  children: [
+                    upComingEvent(),
+                     Center(
+                      child: Text('No Data',style: textStyle().copyWith(color: Colors.black),),
+                    ),
+                     Center(
+                      child: Text('No Data',style: textStyle().copyWith(color: Colors.black),),
+                    ),
                     // Text('data')
                     // UpComingEvent(),
                     // CompletedEvent(),
@@ -130,12 +136,41 @@ class _SheduleSectionState extends State<SheduleSection>
   }
 }
 
-// Widget upComingEvent() {
-//   return StreamBuilder(
-//     //stream: FirebaseFirestore.instance,
-//     builder: ((context, snapshot) {}),
-//   );
-// }
+Widget upComingEvent() {
+  Stream stream = FirebaseFirestore.instance
+      .collection('phone')
+      .doc(sharedPreferences.getString('phone'))
+      .collection('apoint')
+      .snapshots();
+  return StreamBuilder(
+    stream: stream,
+    builder: (context, AsyncSnapshot snapshot) {
+      if (!snapshot.hasData) {
+        return const NewsCardSkelton();
+      } else {
+        return SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              ...List.generate(
+                snapshot.data.docs.length,
+                (index) {
+                  return DesignEvent(
+                    name: snapshot.data.docs[index]['doctName'],
+                    expt: snapshot.data.docs[index]['docExpt'],
+                    docImg: snapshot.data.docs[index]['img'],
+                    date: snapshot.data.docs[index]['date'],
+                    time: snapshot.data.docs[index]['time'],
+                  );
+                },
+              ),
+            ],
+          ),
+        );
+      }
+    },
+  );
+}
 // Widget CompletedEvent {
 // }
 // Widget CancelledEvent {
