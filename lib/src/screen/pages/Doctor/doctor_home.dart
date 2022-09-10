@@ -1,3 +1,4 @@
+import 'package:august_plus/src/app.dart';
 import 'package:august_plus/src/constant/constant.dart';
 import 'package:august_plus/src/screen/pages/Doctor/components/fill_medical_report.dart';
 import 'package:august_plus/src/size_configuration.dart';
@@ -128,10 +129,22 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
                       .collection('pat')
                       .snapshots(),
                   builder: ((context, AsyncSnapshot snapshot) {
-                    if (!snapshot.hasData) {
-                      return const SizedBox(
-                        child: Center(
-                          child: Text('No Data'),
+                    if (snapshot.data.docs.length == 0) {
+                      return SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 20,
+                            right: 10,
+                            top: 10.0,
+                          ),
+                          child: Container(
+                            height: 100,
+                            width: 400,
+                            decoration: decoration(),
+                            child: const Center(
+                              child: Text('no booking found'),
+                            ),
+                          ),
                         ),
                       );
                     } else {
@@ -208,7 +221,16 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
                     height: 40,
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        sharedPreferences.clear();
+                        await firebaseAuth.signOut().then((value) =>
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        const HandleOnboarding())),
+                                (route) => false));
+                      },
                       style: ElevatedButton.styleFrom(
                           shape: const StadiumBorder()),
                       child: const Text('Logout'),

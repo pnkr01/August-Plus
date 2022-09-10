@@ -1,8 +1,8 @@
 import 'package:august_plus/src/app.dart';
-import 'package:august_plus/src/constant/global.dart';
 import 'package:august_plus/src/screen/pages/bottom_nav/profile/user.dart';
 import 'package:august_plus/src/screen/pages/bottom_nav/profile/user_pref.dart';
 import 'package:august_plus/src/size_configuration.dart';
+import 'package:august_plus/utils/global.dart';
 import 'package:flutter/material.dart';
 
 // This class handles the Page to dispaly the user's info on the "Edit Profile" Screen
@@ -304,6 +304,7 @@ class _Profile1State extends State<Profile1> {
                   primary: const Color(0xFF6C6FDB),
                 ),
                 onPressed: () async {
+                  sharedPreferences.clear();
                   await firebaseAuth.signOut().then((value) =>
                       Navigator.pushAndRemoveUntil(
                           context,

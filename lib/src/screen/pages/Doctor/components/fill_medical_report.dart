@@ -239,6 +239,8 @@ class _FillMedicalState extends State<FillMedical> {
           'problem': precautionCntroller.text,
           'medicine': medicineCntroller.text,
           'precaution': precautionCntroller.text,
+          'docName' : sharedPreferences.getString('name'),
+          'docNum' : sharedPreferences.getString('phone'),
         })
         .then((value) => {
               FirebaseFirestore.instance
@@ -251,6 +253,8 @@ class _FillMedicalState extends State<FillMedical> {
                 'problem': precautionCntroller.text,
                 'medicine': medicineCntroller.text,
                 'precaution': precautionCntroller.text,
+                'paName' : widget.name,
+                'paNum' : widget.number,
               })
             })
         .then(

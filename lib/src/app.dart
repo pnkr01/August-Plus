@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:august_plus/src/screen/details/doctors_details_screen.dart';
 import 'package:august_plus/src/screen/home/home.dart';
 import 'package:august_plus/src/screen/pages/Doctor/doctor_home.dart';
 import 'package:august_plus/src/size_configuration.dart';
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme(),
-      title: 'Doctor Plus',
+      title: 'August Plus',
       home: const HandleOnboarding(),
       routes: {
         '/home': (context) => const Home(),
@@ -49,14 +48,12 @@ class _HandleOnboardingState extends State<HandleOnboarding> {
     super.initState();
 
     setTimer();
-    if (sharedPreferences.getString('role') == 'Patient') {
-      requestPermission();
-      wf = WeatherFactory(
-        "752c76ba36af06e471e0cb73908fa033",
-        language: Language.ENGLISH,
-      );
-      getKey();
-    }
+    requestPermission();
+    wf = WeatherFactory(
+      "752c76ba36af06e471e0cb73908fa033",
+      language: Language.ENGLISH,
+    );
+    getKey();
   }
 
   getKey() {
