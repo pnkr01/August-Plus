@@ -1,5 +1,6 @@
 import 'package:august_plus/src/constant/constant.dart';
 import 'package:august_plus/src/constant/shimmer.dart';
+import 'package:august_plus/src/screen/pages/Doctor/components/fill_medical_report.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/utils/global.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -138,11 +139,22 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
                             ...List.generate(
                               snapshot.data.docs.length,
                               (index) {
-                                return createContainer(
-                                  snapshot.data.docs[index]['date'],
-                                  snapshot.data.docs[index]['time'],
-                                  snapshot.data.docs[index]['patname'],
-                                  snapshot.data.docs[index]['patnum'],
+                                return GestureDetector(
+                                  onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) => FillMedical(
+                                                name: snapshot.data.docs[index]
+                                                    ['patname'],
+                                                number: snapshot
+                                                    .data.docs[index]['patnum'],
+                                              )))),
+                                  child: createContainer(
+                                    snapshot.data.docs[index]['date'],
+                                    snapshot.data.docs[index]['time'],
+                                    snapshot.data.docs[index]['patname'],
+                                    snapshot.data.docs[index]['patnum'],
+                                  ),
                                 );
                               },
                             ),
@@ -181,6 +193,25 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                    right: 10.0,
+                  ),
+                  child: SizedBox(
+                    height: 40,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          shape: const StadiumBorder()),
+                      child: const Text('Logout'),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
@@ -306,12 +337,12 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
                           onPressed: () {},
                           child: const Text('Connect'),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

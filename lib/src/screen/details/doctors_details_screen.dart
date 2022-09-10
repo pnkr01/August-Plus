@@ -405,7 +405,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
         .collection('doctors')
         .doc(id)
         .collection('pat')
-        .doc()
+        .doc(sharedPreferences.getString('phone'))
         .set({
       'patname': sharedPreferences.getString('name'),
       'patnum': sharedPreferences.getString('phone'),
