@@ -3,6 +3,9 @@ import 'package:august_plus/src/screen/home/home.dart';
 import 'package:august_plus/src/screen/pages/Doctor/doctor_home.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/src/theme/app_theme.dart';
+import 'package:august_plus/src/video/model/data_store.dart';
+import 'package:august_plus/src/video/service/join_service.dart';
+import 'package:august_plus/src/video/service/sdk_intializer.dart';
 import 'package:august_plus/utils/errordialog.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -42,11 +45,13 @@ class HandleOnboarding extends StatefulWidget {
 }
 
 class _HandleOnboardingState extends State<HandleOnboarding> {
+  // late UserDataStore _dataStore;
+  // bool _isLoading = false;
   late WeatherFactory wf;
   @override
   void initState() {
     super.initState();
-
+    SDKIntializer.hmssdk.build();
     setTimer();
     requestPermission();
     wf = WeatherFactory(
@@ -68,6 +73,14 @@ class _HandleOnboardingState extends State<HandleOnboarding> {
     print("Asking Permission");
     await Permission.location.request();
     await setPermission();
+    await Permission.camera.request();
+    await Permission.microphone.request();
+    while ((await Permission.camera.isDenied)) {
+      await Permission.camera.request();
+    }
+    while ((await Permission.microphone.isDenied)) {
+      await Permission.microphone.request();
+    }
   }
 
   setPermission() async {
@@ -99,6 +112,22 @@ class _HandleOnboardingState extends State<HandleOnboarding> {
       await sharedPreferences.setDouble("long", currentLocation.longitude);
     });
   }
+
+  // Future<bool> joinRoom() async {
+  //   setState(() {
+  //     _isLoading = true;
+  //   });
+  //   bool isJoinSuccessful = await JoinService.join(SDKIntializer.hmssdk);
+  //   if (!isJoinSuccessful) {
+  //     return false;
+  //   }
+  //   _dataStore = UserDataStore();
+  //   _dataStore.startListen();
+  //   setState(() {
+  //     _isLoading = false;
+  //   });
+  //   return true;
+  // }
 
   @override
   Widget build(BuildContext context) {

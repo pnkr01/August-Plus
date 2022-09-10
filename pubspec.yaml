@@ -59,6 +59,8 @@ dependencies:
   cached_network_image: ^3.2.1
   intl: ^0.17.0
   flutter_svg: ^1.1.5
+  hmssdk_flutter: ^0.7.5
+  provider: ^6.0.3
 
 dev_dependencies:
   flutter_test:
