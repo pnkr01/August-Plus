@@ -409,6 +409,8 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
         .set({
       'patname': sharedPreferences.getString('name'),
       'patnum': sharedPreferences.getString('phone'),
+      'date': date,
+      'time': time,
     }).then((value) {
       FirebaseFirestore.instance
           .collection('phone')

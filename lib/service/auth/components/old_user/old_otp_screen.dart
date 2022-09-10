@@ -119,14 +119,19 @@ class _OldUserScreenOtpState extends State<OldUserScreenOtp> {
     } else {
       await FirebaseFirestore.instance
           .collection("doctors")
-          .doc(widget.phone)
+          .doc(widget.phone.substring(0,1))
           .get()
           .then((snap) async {
         // await  sharedPreferences!.setString("uid", currentUser.uid);
         await sharedPreferences.setString("name", snap.data()!["name"]);
-        await sharedPreferences.setString("phone", snap.data()!["phone"]);
-        await sharedPreferences.setString("email", snap.data()!["email"]);
-        await sharedPreferences.setString("address", snap.data()!["address"]);
+        await sharedPreferences.setString("phone", widget.phone);
+        await sharedPreferences.setString("rating", snap.data()!["ra"]);
+        await sharedPreferences.setString("address", snap.data()!["add"]);
+        await sharedPreferences.setString("desc", snap.data()!["description"]);
+        await sharedPreferences.setString("et", snap.data()!["et"]);
+        await sharedPreferences.setString("exp", snap.data()!["exp"]);
+        await sharedPreferences.setString("hp", snap.data()!["hp"]);
+        await sharedPreferences.setString("img", snap.data()!["img"]);
       }).then((value) {
         Navigator.pop(context);
         Navigator.pushReplacement(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'components/map_page.dart';
+import 'components/top_header.dart';
 
 class NearHospitalOnMap extends StatelessWidget {
   const NearHospitalOnMap({Key? key}) : super(key: key);
@@ -6,9 +8,13 @@ class NearHospitalOnMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Report Area'),
-      ),
+      //  drawer: const NavigationDrawerWidget(),
+      body: Stack(children: const [
+        Positioned.fill(
+          child: MapPage(),
+        ),
+        TopHeader(),
+      ]),
     );
   }
 }

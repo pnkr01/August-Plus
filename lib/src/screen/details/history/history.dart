@@ -1,3 +1,4 @@
+import 'package:august_plus/src/constant/constant.dart';
 import 'package:flutter/material.dart';
 
 class HistoryScetion extends StatelessWidget {
@@ -7,7 +8,10 @@ class HistoryScetion extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Report Area'),
+        title: Text(
+          'History',
+          style: textStyle().copyWith(color: Colors.black),
+        ),
       ),
     );
   }
