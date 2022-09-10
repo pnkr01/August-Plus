@@ -8,9 +8,20 @@ class HistoryScetion extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: kPrimaryColor,
         title: Text(
           'History',
-          style: textStyle().copyWith(color: Colors.black),
+          style: textStyle().copyWith(color: Colors.white),
+        ),
+      ),
+      body: Center(
+        child: Text(
+          'No Data',
+          style: textStyle().copyWith(
+            fontSize: 24.0,
+            color: Colors.black,
+          ),
         ),
       ),
     );

@@ -1,15 +1,22 @@
-import 'package:august_plus/src/size_configuration.dart';
 import 'package:flutter/material.dart';
 
+import 'package:august_plus/src/size_configuration.dart';
+
 class DesignGovHealthCard extends StatelessWidget {
-  const DesignGovHealthCard({Key? key}) : super(key: key);
+  final String title;
+  final String imgLink;
+  const DesignGovHealthCard({
+    Key? key,
+    required this.title,
+    required this.imgLink,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Container(
-          height: 280,
+          height: 250,
           width: 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
@@ -31,15 +38,15 @@ class DesignGovHealthCard extends StatelessWidget {
                   width: 180,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(18.0),
-                    child: Image.asset(
-                      'assets/images/five.jpg',
+                    child: Image.network(
+                      imgLink,
                       alignment: Alignment.topRight,
                     ),
                   ),
                 ),
-                const Text(
-                  'Things that should be done during quarnatine',
-                  style: TextStyle(
+                Text(
+                  title,
+                  style: const TextStyle(
                     fontSize: 14.0,
                   ),
                 ),

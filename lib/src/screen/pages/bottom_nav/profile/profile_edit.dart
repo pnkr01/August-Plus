@@ -1,4 +1,5 @@
 import 'package:august_plus/src/app.dart';
+import 'package:august_plus/src/constant/constant.dart';
 import 'package:august_plus/src/screen/pages/bottom_nav/profile/user.dart';
 import 'package:august_plus/src/screen/pages/bottom_nav/profile/user_pref.dart';
 import 'package:august_plus/src/size_configuration.dart';
@@ -18,6 +19,7 @@ class _Profile1State extends State<Profile1> {
   Widget build(BuildContext context) {
     final user = UserPrefrence.myUser;
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(0, 0, 128, 0),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -26,10 +28,10 @@ class _Profile1State extends State<Profile1> {
             ),
             const Center(
               child: CircleAvatar(
-                radius: 75,
+                radius: 70,
                 backgroundColor: Colors.red,
                 child: CircleAvatar(
-                  backgroundImage: AssetImage("assets/images/pic.png"),
+                  backgroundImage: AssetImage("assets/images/p4.png"),
                   radius: 70,
                 ),
               ),

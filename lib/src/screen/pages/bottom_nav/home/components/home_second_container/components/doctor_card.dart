@@ -82,7 +82,7 @@ class DoctorCard extends StatelessWidget {
                 const BuildBottonWithContainer(
                   colorText: Color(0xFF7096E0),
                   colorIcon: Color(0xFFE883DE),
-                  text: 'Book',
+                  text: 'See Details',
                   iconData: FontAwesomeIcons.solidMessage,
                 ),
               ],

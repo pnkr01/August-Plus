@@ -29,24 +29,24 @@ class _TopHeaderState extends State<TopHeader> {
           // width: 600,
           // height: size.height * 0.3,
           child: Padding(
-            padding: const EdgeInsets.only(top: 70, left: 10.0),
+            padding: const EdgeInsets.only(top: 60, left: 85.0,),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               //mainAxisSize: MainAxisSize.min,
-              children: [
+              children: const [
                 // SizedBox(height: 200,),
-                IconButton(
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  icon: const Icon(Icons.person),
-                  color: Colors.white,
-                  iconSize: 30,
-                ),
-                SizedBox(
-                  width: getProportionateScreenWidth(50),
-                ),
-                const Text(
+                // IconButton(
+                //   onPressed: () {
+                //     Scaffold.of(context).openDrawer();
+                //   },
+                //   icon: const Icon(Icons.person),
+                //   color: Colors.white,
+                //   iconSize: 30,
+                // ),
+                // SizedBox(
+                //   width: getProportionateScreenWidth(50),
+                // ),
+                Text(
                   "August Plus",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
