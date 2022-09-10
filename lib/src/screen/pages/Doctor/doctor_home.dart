@@ -1,5 +1,4 @@
 import 'package:august_plus/src/constant/constant.dart';
-import 'package:august_plus/src/constant/shimmer.dart';
 import 'package:august_plus/src/screen/pages/Doctor/components/fill_medical_report.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/utils/global.dart';
@@ -130,7 +129,11 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
                       .snapshots(),
                   builder: ((context, AsyncSnapshot snapshot) {
                     if (!snapshot.hasData) {
-                      return const NewsCardSkelton();
+                      return const SizedBox(
+                        child: Center(
+                          child: Text('No Data'),
+                        ),
+                      );
                     } else {
                       return SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
