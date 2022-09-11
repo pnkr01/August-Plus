@@ -4,6 +4,7 @@ import 'package:august_plus/service/auth/components/old_user/old_otp_screen.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../src/size_configuration.dart';
 import '../../../utils/global.dart';
 import '../../../utils/loading_dialog.dart';
@@ -199,12 +200,18 @@ class _SignInCumLogInScreen extends State<SignInCumLogInScreen> {
             right: 0,
             child: Container(
               color: const Color(0xFFFF9900),
-              child: Text(
-                '              Sign In',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: getProportionateScreenHeight(40),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 200,
+                  ),
+                  child: Text(
+                    'Sign In',
+                    style: GoogleFonts.inder(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -7,9 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
 import '../../../../../utils/global.dart';
 import '../../../../constant/shimmer.dart';
-import '../../../../video/model/data_store.dart';
-import '../../../../video/service/join_service.dart';
-import '../../../../video/service/sdk_intializer.dart';
 import 'components/home_third_container/home_upper_third_container.dart';
 import 'components/home_upper/upper_container.dart';
 
@@ -21,8 +18,6 @@ class HomeNav extends StatefulWidget {
 }
 
 class _HomeNavState extends State<HomeNav> {
-
-
   bool isLoading = true;
   late WeatherFactory wf;
   late Weather w;
@@ -72,30 +67,24 @@ class _HomeNavState extends State<HomeNav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: !isLoading
-          ? SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const HomeUpperContainer(),
-                      const HomeUpperSecondContainer(),
-                      HomeUpperThirdContainer(wdata: w),
-                      const HomeFourContainer(),
-                    ],
-                  ),
-                ),
-              ),
-            )
-          : SizedBox(
-              child: ListView.separated(
-                itemCount: 5,
-                itemBuilder: (context, index) => const NewsCardSkelton(),
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 16.0),
-              ),
-            ),
-    );
+        body: SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const HomeUpperContainer(),
+              !isLoading
+                  ? const HomeUpperSecondContainer()
+                  : const NewsCardSkelton(),
+              !isLoading
+                  ? HomeUpperThirdContainer(wdata: w)
+                  : const NewsCardSkelton(),
+              !isLoading ? const HomeFourContainer() : const NewsCardSkelton(),
+            ],
+          ),
+        ),
+      ),
+    ));
   }
 }

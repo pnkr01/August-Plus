@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "augustplusmentalhealthbot-ydpg",
+  "private_key_id": "8efc45ef606203bddc3f3c9139d90a4229aa9d4d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDRfZkOBhHKPz8H\n+n9xRpO+7x1+z4DM6tKzJpn2ECNLSF+cA5M42bJBlALWcMz0BgsIkeRKA+s6Lf7d\nKE4axQYXlzTz4Oh0LEcUPyFbNsR4hlJtfnsYv3g2IZqLfXS9kFypCRqHVxMO1BNa\nmmD9ms82x7u/L3Euuk203mPNSzJ4LU2JZZOnx6j6tubP/XSvM67afs3HSo9LQAW3\nvyl+A8A9HdKhwN7D5+QtWZuxf3YEi7YkHQ7JLMU3wHsOHoTHgRHrWSlcdwA5OMsv\n8VgOu/59ZppyCRUeHwZvWlKSQZw5ZR6mynWHme1jQuoWr0jVJrle+YYmYtGvYc5a\nC/B9PsrfAgMBAAECggEAaEVHpT9II46PZP096bfjWinSWIgX5+cJsLoJ7/vgVVxU\nmmb9JFLW8uUk9G941A0d+MoFAwIoVvEF5jZlidV/TsaoSKstiIVxa5Zwl+IOsJ7K\n8E0AIDVNNERNlBiBvsjYFhq95ZdlmP/eEj68//3KHc4UmPiYMVXxz5DRxCElocKj\nwa+TDRtlEhtIWdwWsiX6XkzolbMx9vah0XV3DwX4+S506RhssIAmutmKQ2YsUtEr\nl6x2U/Mz8PMJhouPJFurGjIHhLb82kKo7yBn4pwVOfzSBAXEToEtrr93UVCFZ+Is\nx/3U5Oi26IX8PfDw+8NF+eKqSyZtgNUmIq8Dy6UeIQKBgQD3wyiFs7SFYntVsdbW\nkCBQ7TYQ7laYmc233Ti/stusN2ysfMGZ/nVjx0WKnIHleZTz+/MCEJG8gQO3N56R\n0ty6s3dV5wlOAOFQoYyRNnBoU2qsOewJtQYLrLtMtF0lREYOunj8osORq2sXmqFT\ndxcgZMK1jAEUmJa38bIuxtls6wKBgQDYdLAZgBAbvCRhZK9LCopGYYCPn3Ho/UjM\nTIuu2gc2BrN0oKOPKZyip69icS9KmBr3M89n6Tguokcm5d+OIDkcUAuAN7FNQRqV\nwkYVVQPbjhORi0Whrk4HucJ6u3T4mjbKBytK+kPqwsKoe6Mb+UqRr3calEk/dwUL\nfA49cCJM3QKBgQDqSeUG0dGSFHeWqI4E5dN5U2c+CXNf6IktJgek1yh9qQed8HdO\n/N3bFbQACFGZQyiEs6qvOCXoAIQX/IN5V9Gcx1rAo7Ibzh9ClRGMu9L+BGuqIze+\nUi0+Wv/e3+v48p/hC5qfI/cVx+iEMJf/im0XF9E7xgG7jTNxDCA3tZgjMwKBgQCZ\nUp5ikbnXS3+hlUYtq3uiuvHryg9P8Ame3SGca0fsVvbKx/bTM7CF7q1m17Gd7vw6\n2nIxsptfPQeVYALok56glXpwCgMHK/R+3Cv0dFHVNWBbGgHqsqMHCefeM+Z5KhNh\nK47Y/0kYg3iLC3jQGddeNqHxK9Rupgnmxqr3jfRd6QKBgQCzVhpkf5AkQE0/YbjA\n1jvGlaHXGS5HQAH7ziVAAsPnJnAQou2Y/gN/n0BtYWTqjd+j+LMH1zS/RiMFHo3o\nKawHQoL7X0MFNCGJphyysMqmd5g8uD9lHR51xeGCoLjv2DhHEFDioCK6ZgrIaTkr\nV3pX9+LxppGxhFLXY+cTHlyHbA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "augustbot@augustplusmentalhealthbot-ydpg.iam.gserviceaccount.com",
+  "client_id": "106800218450009453704",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/augustbot%40augustplusmentalhealthbot-ydpg.iam.gserviceaccount.com"
+}

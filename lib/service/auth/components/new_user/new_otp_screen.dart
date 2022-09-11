@@ -143,12 +143,17 @@ class _NewUserScreenOtpState extends State<NewUserScreenOtp> {
             right: 0,
             child: Container(
               color: const Color(0xFFFF9900),
-              child: Text(
-                '            Sign Up',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: getProportionateScreenHeight(40),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 200),
+                  child: Text(
+                    'Sign Up',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: getProportionateScreenHeight(40),
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -6,6 +6,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import '../../size_configuration.dart';
 import '../pages/bottom_nav/ambulance/ambulance_nav.dart';
 import '../pages/bottom_nav/home/home_nav.dart';
+import '../pages/bottom_nav/message/components/ai_bot_dc.dart';
 import '../pages/bottom_nav/message/message_nav.dart';
 
 class Home extends StatefulWidget {
@@ -19,7 +20,7 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   final screen = [
     const HomeNav(),
-    const MessageNav(),
+    const AIBotDecision(),
     const Profile1(),
     const AmbulanceNav(),
   ];
@@ -44,9 +45,7 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: 
-              
-              GNav(
+              child: GNav(
                 rippleColor: Colors.blue[300]!,
                 hoverColor: Colors.grey[100]!,
                 gap: 8,

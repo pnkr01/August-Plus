@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:august_plus/src/screen/pages/bottom_nav/profile/user_pref.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../utils/global.dart';
 import '../../../../app.dart';
@@ -180,25 +181,25 @@ class _Profile1State extends State<Profile1> {
                       ),
                       child: Column(
                         children: [
-                          Text(
-                            title[index],
-                            style: const TextStyle(
-                              fontSize: 18.0,
-                              fontFamily: "VarelaRound",
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                          Center(
+                            child: Text(
+                              title[index],
+                              style: GoogleFonts.inder(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                              )
                             ),
                           ),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.02,
                           ),
                           Expanded(
-                            child: Text(
-                              ans[index],
-                              style: const TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.white,
-                                fontFamily: "BebasNeue",
+                            child: Center(
+                              child: Text(
+                                ans[index],
+                                style: GoogleFonts.inder(
+                                  color: Colors.white,
+                                )
                               ),
                             ),
                           ),

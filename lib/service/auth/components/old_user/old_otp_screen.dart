@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
@@ -119,7 +120,7 @@ class _OldUserScreenOtpState extends State<OldUserScreenOtp> {
     } else {
       await FirebaseFirestore.instance
           .collection("doctors")
-          .doc(widget.phone.substring(0,1))
+          .doc(widget.phone.substring(0, 1))
           .get()
           .then((snap) async {
         // await  sharedPreferences!.setString("uid", currentUser.uid);
@@ -194,12 +195,16 @@ class _OldUserScreenOtpState extends State<OldUserScreenOtp> {
             right: 0,
             child: Container(
               color: const Color(0xFFFF9900),
-              child: Text(
-                '            Log In',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: getProportionateScreenHeight(40),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 200),
+                  child: Text(
+                    'Log In',
+                    style: GoogleFonts.inder(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                    ),
+                  ),
                 ),
               ),
             ),

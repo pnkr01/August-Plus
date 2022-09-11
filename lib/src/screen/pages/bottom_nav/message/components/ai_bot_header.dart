@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TopHeader extends StatefulWidget {
+class AiBotHeader extends StatefulWidget {
   //final GlobalKey<ScaffoldState> keys;
-  const TopHeader({
+  const AiBotHeader({
     Key? key,
     // required this.keys,
   }) : super(key: key);
 
   @override
-  State<TopHeader> createState() => _TopHeaderState();
+  State<AiBotHeader> createState() => _AiBotHeaderState();
 }
 
-class _TopHeaderState extends State<TopHeader> {
+class _AiBotHeaderState extends State<AiBotHeader> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -29,21 +29,13 @@ class _TopHeaderState extends State<TopHeader> {
           // width: 600,
           // height: size.height * 0.3,
           child: Padding(
-            padding: const EdgeInsets.only(
-              top: 70,
-              left: 130.0,
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "August Plus",
-                  style: GoogleFonts.inder(
-                    color: Colors.white,
-                    fontSize: 24.0,
-                  ),
-                ),
-              ],
+            padding: const EdgeInsets.only(top: 70, left: 120.0),
+            child: Text(
+              "Mental Health",
+              style: GoogleFonts.inder(
+                color: Colors.white,
+                fontSize: 24.0,
+              ),
             ),
           ),
         ),
