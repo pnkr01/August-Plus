@@ -3,8 +3,6 @@ import 'package:august_plus/src/screen/home/home.dart';
 import 'package:august_plus/src/screen/pages/Doctor/doctor_home.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/src/theme/app_theme.dart';
-import 'package:august_plus/src/video/model/data_store.dart';
-import 'package:august_plus/src/video/service/join_service.dart';
 import 'package:august_plus/src/video/service/sdk_intializer.dart';
 import 'package:august_plus/utils/errordialog.dart';
 import 'package:flutter/foundation.dart';

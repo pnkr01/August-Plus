@@ -4,8 +4,8 @@ class User {
   final String phone;
   final String signedInAs;
   final String createdAt;
-  final String bookedAmbulanceSoFar;
-  final String bookedDoctorsSoFar;
+  final int bookedAmbulanceSoFar;
+  final int bookedDoctorsSoFar;
   User({
     required this.name,
     required this.email,

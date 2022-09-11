@@ -1,7 +1,8 @@
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_weather_icons/flutter_weather_icons.dart';
 import 'package:weather/weather.dart';
+
+import '../../../../../../package/weather_icon.dart';
 
 class DesignWeather extends StatelessWidget {
   final Weather wData;
@@ -65,7 +66,8 @@ class DesignWeather extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / getProportionateScreenHeight(3.5),
+      height: MediaQuery.of(context).size.height /
+          getProportionateScreenHeight(3.5),
       width: MediaQuery.of(context).size.width,
       child: GridView(
         padding: const EdgeInsets.all(14),

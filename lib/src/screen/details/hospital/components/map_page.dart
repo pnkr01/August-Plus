@@ -2,12 +2,10 @@
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'package:august_plus/src/screen/pages/bottom_nav/ambulance/model/nearest_ambulance.dart';
-import 'package:august_plus/src/size_configuration.dart';
-import 'package:august_plus/utils/errordialog.dart';
 import 'package:august_plus/utils/global.dart';
 import 'package:august_plus/utils/loading_dialog.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -105,7 +103,7 @@ class _MapPageState extends State<MapPage> {
       // ignore: avoid_print
       print(
           "Oye! Hero Map Key Change Karde thora 2 jagah toh mein places show kardun..");
-      print("Kya gunda banega tu?");
+      log("Kya gunda banega tu?");
       return nearevstationresult;
     }
   }
@@ -469,4 +467,3 @@ class _MapPageState extends State<MapPage> {
     );
   }
 }
-

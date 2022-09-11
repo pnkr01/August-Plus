@@ -1,6 +1,5 @@
 import 'package:august_plus/src/constant/constant.dart';
 import 'package:august_plus/src/constant/shimmer.dart';
-import 'package:august_plus/utils/progress_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

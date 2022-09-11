@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:august_plus/src/screen/pages/bottom_nav/profile/user.dart';
 import 'package:august_plus/src/screen/pages/bottom_nav/profile/user_pref.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,7 @@ class _Profile1State extends State<Profile1> {
                 ),
               ),
               const SizedBox(height: 5.0),
-              buildAbout(title, titleAns),
+              buildAbout(user,title, titleAns),
             ],
           ),
         ),
@@ -80,7 +81,7 @@ class _Profile1State extends State<Profile1> {
   }
 
   // Widget builds the About Me Section
-  Widget buildAbout(var title, var ans) => Column(
+  Widget buildAbout(User user, var title, var ans) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // const Text(
@@ -196,7 +197,7 @@ class _Profile1State extends State<Profile1> {
                           Expanded(
                             child: Center(
                               child: Text(
-                                ans[index],
+                            index == 4 ? user.bookedDoctorsSoFar.toString() : index == 5 ? user.bookedAmbulanceSoFar.toString()  : ans[index],
                                 style: GoogleFonts.inder(
                                   color: Colors.white,
                                 )

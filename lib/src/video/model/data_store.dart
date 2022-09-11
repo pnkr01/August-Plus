@@ -1,3 +1,5 @@
+// ignore_for_file: override_on_non_overriding_member
+
 import 'package:august_plus/src/video/service/sdk_intializer.dart';
 import 'package:flutter/material.dart';
 import 'package:hmssdk_flutter/hmssdk_flutter.dart';
@@ -67,7 +69,6 @@ class UserDataStore extends ChangeNotifier implements HMSUpdateListener {
       case HMSPeerUpdate.defaultUpdate:
         break;
       case HMSPeerUpdate.networkQualityUpdated:
-        // TODO: Handle this case.
         break;
     }
     notifyListeners();
@@ -157,14 +158,14 @@ class UserDataStore extends ChangeNotifier implements HMSUpdateListener {
   void startListen() {
     SDKIntializer.hmssdk.addUpdateListener(listener: this);
   }
-  
+
   @override
-  void onAudioDeviceChanged({HMSAudioDevice? currentAudioDevice, List<HMSAudioDevice>? availableAudioDevice}) {
-    // TODO: implement onAudioDeviceChanged
+  void onAudioDeviceChanged(
+      {HMSAudioDevice? currentAudioDevice,
+      List<HMSAudioDevice>? availableAudioDevice}) {
   }
-  
+
   @override
   void onHMSError({required HMSException error}) {
-    // TODO: implement onHMSError
   }
 }

@@ -46,7 +46,8 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20)),
                         child: Image.network(
-                          'https://img.freepik.com/premium-photo/medical-concept-asian-beautiful-female-doctor-white-coat-with-glasses-waist-high-medical-student-female-hospital-worker-looks-into-camera-smiles-studio-blue-background_185696-615.jpg?w=740',
+                          sharedPreferences.getString('img') ??
+                              'https://img.freepik.com/premium-photo/medical-concept-asian-beautiful-female-doctor-white-coat-with-glasses-waist-high-medical-student-female-hospital-worker-looks-into-camera-smiles-studio-blue-background_185696-615.jpg?w=740',
                           width: 28,
                         ),
                       ),

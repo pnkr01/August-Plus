@@ -7,7 +7,6 @@ import '../../size_configuration.dart';
 import '../pages/bottom_nav/ambulance/ambulance_nav.dart';
 import '../pages/bottom_nav/home/home_nav.dart';
 import '../pages/bottom_nav/message/components/ai_bot_dc.dart';
-import '../pages/bottom_nav/message/message_nav.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

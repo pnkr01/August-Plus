@@ -17,15 +17,17 @@ class _MessageScreenState extends State<MessageScreen> {
     var w = MediaQuery.of(context).size.width;
     return ListView.separated(
       itemBuilder: (context, index) {
-        return Row(
-          mainAxisAlignment: widget.messages[index]['isUserMessage']
-              ? MainAxisAlignment.end
-              : MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
-              decoration: BoxDecoration(
+        return SingleChildScrollView(
+          child: Row(
+            mainAxisAlignment: widget.messages[index]['isUserMessage']
+                ? MainAxisAlignment.end
+                : MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: const Radius.circular(
                       20,
@@ -37,14 +39,16 @@ class _MessageScreenState extends State<MessageScreen> {
                         widget.messages[index]['isUserMessage'] ? 20 : 0),
                   ),
                   color: widget.messages[index]['isUserMessage']
-                      ? Colors.grey.shade800
-                      : Colors.grey.shade900.withOpacity(0.8)),
-              constraints: BoxConstraints(maxWidth: w * 2 / 3),
-              child: Text(
-                widget.messages[index]['message'].text.text[0],
+                      ? const Color(0xFFB05BFC)
+                      : const Color(0xFF81D990),
+                ),
+                constraints: BoxConstraints(maxWidth: w * 2 / 3),
+                child: Text(
+                  widget.messages[index]['message'].text.text[0],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
       separatorBuilder: (_, i) =>

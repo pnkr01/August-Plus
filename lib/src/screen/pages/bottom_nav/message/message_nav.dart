@@ -1,3 +1,5 @@
+import 'package:august_plus/src/constant/constant.dart';
+import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/utils/global.dart';
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
@@ -33,11 +35,18 @@ class _MessageNavState extends State<MessageNav> {
       // ),
       body: Column(
         children: [
+          SizedBox(
+            height: getProportionateScreenHeight(100),
+          ),
           Expanded(
             child: MessageScreen(messages: messages),
           ),
           Container(
             color: Colors.deepPurple,
+            // decoration: decoration().copyWith(
+            //   color: Colors.deepPurple,
+            //   borderRadius: BorderRadius.circular(4)
+            // ),
             padding: const EdgeInsets.symmetric(
               horizontal: 14.0,
               vertical: 8.0,
@@ -46,6 +55,26 @@ class _MessageNavState extends State<MessageNav> {
               children: [
                 Expanded(
                   child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Type your problem',
+                      hintStyle: textStyle().copyWith(fontSize: 14.0),
+                      enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(24.0),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                        ),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(24.0),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                     controller: controller,
                     style: const TextStyle(
                       color: Colors.white,

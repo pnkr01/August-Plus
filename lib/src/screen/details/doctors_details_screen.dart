@@ -432,6 +432,11 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
         'Booked Sucessfully',
         Colors.green,
       );
+      sharedPreferences.setInt(
+          'nD',
+          sharedPreferences.getInt('nD') == 0
+              ? 1
+              : sharedPreferences.getInt('nD')! + 1);
     });
   }
 }

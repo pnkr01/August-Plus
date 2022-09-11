@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'package:august_plus/src/screen/pages/bottom_nav/ambulance/model/nearest_ambulance.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/utils/errordialog.dart';
@@ -107,7 +108,7 @@ class _MapPageState extends State<MapPage> {
       // ignore: avoid_print
       print(
           "Oye! Hero Map Key Change Karde thora 2 jagah toh mein places show kardun..");
-      print("Kya gunda banega tu?");
+      log("Kya gunda banega tu?");
       return nearevstationresult;
     }
   }
@@ -486,13 +487,18 @@ bookAmbulance(
       })
       .then((value) => Navigator.pop(context))
       .then((value) => Navigator.pop(context))
-      .then(
-        (value) => showSnackBar(
+      .then((value) {
+        showSnackBar(
           context,
           'Booked Sucessfully',
           Colors.green,
-        ),
-      )
+        );
+        sharedPreferences.setInt(
+            'nA',
+            sharedPreferences.getInt('nA') == 0
+                ? 1
+                : sharedPreferences.getInt('nA')! + 1);
+      })
       .then((value) => showModalBottomSheet(
           backgroundColor: Colors.green,
           enableDrag: true,

@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:august_plus/src/screen/details/hospital/components/top_header.dart';
 import 'package:august_plus/src/screen/pages/bottom_nav/message/components/ai_bot_header.dart';
 import 'package:flutter/material.dart';
 

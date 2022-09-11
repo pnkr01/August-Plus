@@ -1,5 +1,5 @@
-import 'package:august_plus/src/size_configuration.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TopHeader extends StatefulWidget {
   //final GlobalKey<ScaffoldState> keys;
@@ -28,15 +28,13 @@ class _TopHeaderState extends State<TopHeader> {
           // height: 800,
           // width: 600,
           // height: size.height * 0.3,
-          child: const Padding(
-            padding: EdgeInsets.only(top: 70, left: 100.0),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 80, left: 120.0),
             child: Text(
               "August Plus",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 40,
-                fontFamily: "VarelaRound",
+              style: GoogleFonts.inder(
                 color: Colors.white,
+                fontSize: 28.0,
               ),
             ),
           ),

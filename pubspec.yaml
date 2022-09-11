@@ -47,7 +47,6 @@ dependencies:
   permission_handler: ^10.0.0
   weather: ^2.0.1
   sqflite: ^2.0.3+1
-  flutter_weather_icons: ^1.0.2
   simple_animations: ^5.0.0+2
   flutter_polyline_points: ^1.0.0
   flutter_spinkit: ^5.1.0
