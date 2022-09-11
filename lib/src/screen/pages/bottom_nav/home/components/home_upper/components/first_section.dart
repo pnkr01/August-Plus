@@ -1,4 +1,5 @@
 import 'package:august_plus/src/constant/constant.dart';
+import 'package:august_plus/src/screen/pages/bottom_nav/home/components/home_upper/components/notification_screen.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:august_plus/utils/global.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,14 @@ class FirstSection extends StatelessWidget {
               ),
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NotificaationSCreen(),
+                  ),
+                );
+              },
               icon: Icon(
                 FontAwesomeIcons.solidBell,
                 color: Colors.white,

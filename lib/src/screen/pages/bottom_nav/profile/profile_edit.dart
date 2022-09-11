@@ -72,7 +72,7 @@ class _Profile1State extends State<Profile1> {
                 ),
               ),
               const SizedBox(height: 5.0),
-              buildAbout(user,title, titleAns),
+              buildAbout(user, title, titleAns),
             ],
           ),
         ),
@@ -183,13 +183,11 @@ class _Profile1State extends State<Profile1> {
                       child: Column(
                         children: [
                           Center(
-                            child: Text(
-                              title[index],
-                              style: GoogleFonts.inder(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                              )
-                            ),
+                            child: Text(title[index],
+                                style: GoogleFonts.inder(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                )),
                           ),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.02,
@@ -197,11 +195,14 @@ class _Profile1State extends State<Profile1> {
                           Expanded(
                             child: Center(
                               child: Text(
-                            index == 4 ? user.bookedDoctorsSoFar.toString() : index == 5 ? user.bookedAmbulanceSoFar.toString()  : ans[index],
-                                style: GoogleFonts.inder(
-                                  color: Colors.white,
-                                )
-                              ),
+                                  index == 4
+                                      ? user.bookedAmbulanceSoFar.toString()
+                                      : index == 5
+                                          ? user.bookedDoctorsSoFar.toString()
+                                          : ans[index],
+                                  style: GoogleFonts.inder(
+                                    color: Colors.white,
+                                  )),
                             ),
                           ),
                           const SizedBox(

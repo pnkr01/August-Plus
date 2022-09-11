@@ -59,8 +59,8 @@ class _HandleOnboardingState extends State<HandleOnboarding> {
     getKey();
   }
 
-  getKey() {
-    MapKey.readyApiKey();
+  getKey() async {
+    await MapKey.readyApiKey();
   }
 
   // ignore: prefer_typing_uninitialized_variables

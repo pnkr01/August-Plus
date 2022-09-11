@@ -434,7 +434,8 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
       );
       sharedPreferences.setInt(
           'nD',
-          sharedPreferences.getInt('nD') == 0
+          sharedPreferences.getInt('nD') == 0 ||
+                  sharedPreferences.getInt('nD') == null
               ? 1
               : sharedPreferences.getInt('nD')! + 1);
     });

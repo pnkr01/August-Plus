@@ -222,7 +222,7 @@ class _MapPageState extends State<MapPage> {
                   sharedPreferences.getDouble("lat") ?? 0,
                   sharedPreferences.getDouble("long") ?? 0,
                 ),
-                zoom: 20.0,
+                zoom: 14.0,
                 // bearing: 90.0,
                 // tilt: 45.0,
               ),
@@ -481,25 +481,25 @@ bookAmbulance(
       .collection('ambulance')
       .doc()
       .set({
-        'distance': distance.toString().substring(0, 4),
-        'address': address,
-        'name': name,
-      })
-      .then((value) => Navigator.pop(context))
-      .then((value) => Navigator.pop(context))
-      .then((value) {
-        showSnackBar(
-          context,
-          'Booked Sucessfully',
-          Colors.green,
-        );
-        sharedPreferences.setInt(
-            'nA',
-            sharedPreferences.getInt('nA') == 0
-                ? 1
-                : sharedPreferences.getInt('nA')! + 1);
-      })
-      .then((value) => showModalBottomSheet(
+    'distance': distance.toString().substring(0, 4),
+    'address': address,
+    'name': name,
+  }).then((value) {
+    Navigator.pop(context);
+    Navigator.pop(context);
+  }).then((value) {
+    showSnackBar(
+      context,
+      'Booked Sucessfully',
+      Colors.green,
+    );
+    sharedPreferences.setInt(
+        'nA',
+        sharedPreferences.getInt('nA') == 0 ||
+                sharedPreferences.getInt('nA') == null
+            ? 1
+            : sharedPreferences.getInt('nA')! + 1);
+  }).then((value) => showModalBottomSheet(
           backgroundColor: Colors.green,
           enableDrag: true,
           isDismissible: true,
