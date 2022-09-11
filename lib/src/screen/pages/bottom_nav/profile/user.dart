@@ -4,15 +4,15 @@ class User {
   final String phone;
   final String signedInAs;
   final String createdAt;
-  final int? bookedAmbulanceSoFar;
-  final int? bookedDoctorsSoFar;
+  final String bookedAmbulanceSoFar;
+  final String bookedDoctorsSoFar;
   User({
     required this.name,
     required this.email,
     required this.phone,
     required this.signedInAs,
     required this.createdAt,
-    this.bookedAmbulanceSoFar,
-    this.bookedDoctorsSoFar,
+    required this.bookedAmbulanceSoFar,
+    required this.bookedDoctorsSoFar,
   });
 }

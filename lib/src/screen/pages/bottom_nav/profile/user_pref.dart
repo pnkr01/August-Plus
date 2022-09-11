@@ -4,8 +4,8 @@ import '../../../../../utils/global.dart';
 
 class UserPrefrence {
   static final myUser = User(
-    bookedDoctorsSoFar: sharedPreferences.getInt('nD') ?? 0,
-    bookedAmbulanceSoFar: sharedPreferences.getInt('nA') ?? 0,
+    bookedAmbulanceSoFar: sharedPreferences.getString('nD') ?? '0',
+    bookedDoctorsSoFar: sharedPreferences.getString('nA') ?? '0',
     signedInAs: sharedPreferences.getString('role') ?? 'Patient',
     name: sharedPreferences.getString('name') ?? "",
     email: sharedPreferences.getString('email') ?? "no",

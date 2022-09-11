@@ -1,4 +1,7 @@
 import 'package:august_plus/src/constant/constant.dart';
+import 'package:august_plus/src/constant/shimmer.dart';
+import 'package:august_plus/utils/progress_bar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class DetailGovScreen extends StatelessWidget {
@@ -47,6 +50,27 @@ class DetailGovScreen extends StatelessWidget {
                 right: 20.0,
                 top: 8.0,
               ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(24.0),
+                ),
+                child: CachedNetworkImage(
+                  placeholder: ((context, url) => const NewsCardSkelton()),
+                  imageUrl: imgLink,
+                  // progressIndicatorBuilder: (context, url, progress) =>
+                  //     circularProgress(),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 20.0,
+                right: 20.0,
+                top: 8.0,
+              ),
               child: Container(
                 decoration: decoration().copyWith(
                   color: const Color.fromRGBO(0, 0, 128, 0),
@@ -54,13 +78,11 @@ class DetailGovScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
-                  child: Flexible(
-                    child: Text(
-                      describe,
-                      style: textStyle().copyWith(
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
+                  child: Text(
+                    describe,
+                    style: textStyle().copyWith(
+                      fontSize: 15,
+                      color: Colors.black,
                     ),
                   ),
                 ),

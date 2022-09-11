@@ -187,6 +187,7 @@ class _DesignEventState extends State<DesignEvent> {
                       right: 20,
                     ),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -204,29 +205,30 @@ class _DesignEventState extends State<DesignEvent> {
                         SizedBox(
                           width: getProportionateScreenWidth(68),
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFF47CEFE),
-                            shape: const StadiumBorder(),
-                          ),
-                          onPressed: () async {
-                            bool isJoined = await joinRoom();
-                            if (isJoined) {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => ListenableProvider.value(
-                                    value: _dataStore,
-                                    child: const MeetingScreen(),
+                        SizedBox(
+                          width: 100,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: const Color(0xFF47CEFE),
+                              shape: const StadiumBorder(),
+                            ),
+                            onPressed: () async {
+                              bool isJoined = await joinRoom();
+                              if (isJoined) {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) => ListenableProvider.value(
+                                      value: _dataStore,
+                                      child: const MeetingScreen(),
+                                    ),
                                   ),
-                                ),
-                              );
-                            } else {
-                              const SnackBar(
-                                content: Text("Error"),
-                              );
-                            }
-                          },
-                          child: const Text('Join'),
+                                );
+                              } else {
+                                const SnackBar(content: Text("Error"));
+                              }
+                            },
+                            child: const Text('Join'),
+                          ),
                         ),
                       ],
                     ),
