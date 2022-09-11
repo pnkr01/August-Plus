@@ -4,12 +4,10 @@ import 'package:august_plus/src/screen/pages/bottom_nav/home/components/home_fou
 import 'package:august_plus/src/screen/pages/bottom_nav/home/components/home_second_container/home_upper_second_container.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:weather/weather.dart';
 import '../../../../../utils/global.dart';
 import '../../../../constant/shimmer.dart';
 import '../../../../video/model/data_store.dart';
-import '../../../../video/model/meeting_lin.dart';
 import '../../../../video/service/join_service.dart';
 import '../../../../video/service/sdk_intializer.dart';
 import 'components/home_third_container/home_upper_third_container.dart';
@@ -23,23 +21,7 @@ class HomeNav extends StatefulWidget {
 }
 
 class _HomeNavState extends State<HomeNav> {
-  late UserDataStore _dataStore;
-  bool _isLoading = false;
-  Future<bool> joinRoom() async {
-    setState(() {
-      _isLoading = true;
-    });
-    bool isJoinSuccessful = await JoinService.join(SDKIntializer.hmssdk);
-    if (!isJoinSuccessful) {
-      return false;
-    }
-    _dataStore = UserDataStore();
-    _dataStore.startListen();
-    setState(() {
-      _isLoading = false;
-    });
-    return true;
-  }
+
 
   bool isLoading = true;
   late WeatherFactory wf;
@@ -99,23 +81,6 @@ class _HomeNavState extends State<HomeNav> {
                     children: [
                       const HomeUpperContainer(),
                       const HomeUpperSecondContainer(),
-                      ElevatedButton(
-                          onPressed: () async {
-                            bool isJoined = await joinRoom();
-                            if (isJoined) {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => ListenableProvider.value(
-                                    value: _dataStore,
-                                    child: const MeetingScreen(),
-                                  ),
-                                ),
-                              );
-                            } else {
-                              const SnackBar(content: Text("Error"));
-                            }
-                          },
-                          child: const Text('Text')),
                       HomeUpperThirdContainer(wdata: w),
                       const HomeFourContainer(),
                     ],

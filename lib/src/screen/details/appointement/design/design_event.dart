@@ -1,13 +1,20 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:august_plus/src/constant/constant.dart';
 import 'package:august_plus/src/size_configuration.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../utils/progress_bar.dart';
+import '../../../../video/model/data_store.dart';
+import '../../../../video/model/meeting_lin.dart';
+import '../../../../video/service/join_service.dart';
+import '../../../../video/service/sdk_intializer.dart';
 
-class DesignEvent extends StatelessWidget {
+class DesignEvent extends StatefulWidget {
   final String name;
   final String expt;
   final String docImg;
@@ -21,6 +28,29 @@ class DesignEvent extends StatelessWidget {
     required this.date,
     required this.time,
   }) : super(key: key);
+
+  @override
+  State<DesignEvent> createState() => _DesignEventState();
+}
+
+class _DesignEventState extends State<DesignEvent> {
+  late UserDataStore _dataStore;
+  bool _isLoading = false;
+  Future<bool> joinRoom() async {
+    setState(() {
+      _isLoading = true;
+    });
+    bool isJoinSuccessful = await JoinService.join(SDKIntializer.hmssdk);
+    if (!isJoinSuccessful) {
+      return false;
+    }
+    _dataStore = UserDataStore();
+    _dataStore.startListen();
+    setState(() {
+      _isLoading = false;
+    });
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +79,7 @@ class DesignEvent extends StatelessWidget {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(14.0)),
                           child: CachedNetworkImage(
-                            imageUrl: docImg,
+                            imageUrl: widget.docImg,
                             width: 100,
                             alignment: Alignment.topRight,
                             fit: BoxFit.fill,
@@ -69,7 +99,9 @@ class DesignEvent extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              name.length >= 15 ? name.substring(0, 15) : name,
+                              widget.name.length >= 15
+                                  ? widget.name.substring(0, 15)
+                                  : widget.name,
                               softWrap: true,
                               style: textStyle().copyWith(
                                 color: Colors.black,
@@ -79,7 +111,7 @@ class DesignEvent extends StatelessWidget {
                               height: 8,
                             ),
                             Text(
-                              expt,
+                              widget.expt,
                               style: textStyle().copyWith(
                                 color: Colors.grey,
                               ),
@@ -117,7 +149,7 @@ class DesignEvent extends StatelessWidget {
                                 const SizedBox(
                                   width: 8,
                                 ),
-                                Text(date),
+                                Text(widget.date),
                               ],
                             ),
                           ),
@@ -137,7 +169,7 @@ class DesignEvent extends StatelessWidget {
                                 width: 1,
                               ),
                               Text(
-                                "${time.substring(0, 2)} : ${time.substring(2)}",
+                                "${widget.time.substring(0, 2)} : ${widget.time.substring(2)}",
                               ),
                             ],
                           ),
@@ -177,13 +209,24 @@ class DesignEvent extends StatelessWidget {
                             primary: const Color(0xFF47CEFE),
                             shape: const StadiumBorder(),
                           ),
-                          onPressed: onreshedule,
-                          child: Text(
-                            'Reshedule',
-                            style: textStyle().copyWith(
-                              color: Colors.white,
-                            ),
-                          ),
+                          onPressed: () async {
+                            bool isJoined = await joinRoom();
+                            if (isJoined) {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => ListenableProvider.value(
+                                    value: _dataStore,
+                                    child: const MeetingScreen(),
+                                  ),
+                                ),
+                              );
+                            } else {
+                              const SnackBar(
+                                content: Text("Error"),
+                              );
+                            }
+                          },
+                          child: const Text('Join'),
                         ),
                       ],
                     ),
@@ -200,4 +243,4 @@ class DesignEvent extends StatelessWidget {
 
 void onCancel() {}
 
-void onreshedule() {}
+void onJoinVideoConference() {}

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:august_plus/utils/global.dart';
 import 'package:hmssdk_flutter/hmssdk_flutter.dart';
 import 'package:http/http.dart' as https;
 
@@ -8,8 +9,11 @@ class JoinService {
     String roomId = '631ca39b4208780bf662c833';
     Uri endpoint = Uri.parse(
         'https://prod-in2.100ms.live/hmsapi/augustplus-augustplus.app.100ms.live/api/token');
-    https.Response response = await https.post(endpoint,
-        body: {'user_id': "user", 'room_id': roomId, 'role': "host"});
+    https.Response response = await https.post(endpoint, body: {
+      'user_id': sharedPreferences.getString('name') ?? 'Patient',
+      'room_id': roomId,
+      'role': "host"
+    });
 
     var body = json.decode(response.body);
     if (body == null || body['token'] == null) {
