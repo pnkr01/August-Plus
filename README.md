@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/pnkr01/August-Plus">
-    <img src="https://github.com/pnkr01/August-plus-Hackodisha/raw/master/image/1.png" alt="Logo" width="80" height="80">
+    <img src="https://user-images.githubusercontent.com/83778936/200171560-a9a4b731-1038-4c4b-b7c8-64e549fabf49.png" alt="Logo" width="80" height="80">
   </a>
 
   <h1 align="center"><b>August Plus</b></h1>
